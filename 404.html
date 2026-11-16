@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ATI-Normandy</title>
+<script>
+/* Old addresses of the previous ati-normandy.fr site (/fr/..., /en/...) are sent to the matching page of the new site. */
+(function () {
+  var path = location.pathname, base = "/";
+  if (/\.github\.io$/.test(location.hostname)) {           /* project site: https://<user>.github.io/<repo>/... */
+    var parts = path.split("/");
+    base = "/" + parts[1] + "/";
+    path = "/" + parts.slice(2).join("/");
+  }
+  var m = path.match(/^\/(fr|en)(\/.*)?$/);
+  var lang = m ? m[1] : null, rest = m ? (m[2] || "/") : path;
+  var phase1Map = /phase=wp1/.test(location.search) && location.hash === "#map";
+  var rules = [
+    [/^\/?$/, ""],
+    [/^\/project/, "le-projet"],
+    [/^\/work-packages\/wp1\/datum/, "cartographie"],
+    [/^\/work-packages/, phase1Map ? "cartographie" : "programme"],
+    [/^\/researchers/, "equipe"],
+    [/^\/partners/, "partenaires"],
+    [/^\/publications/, "publications"],
+    [/^\/(contact|join|members)/, "contact"],
+    [/^\/carte(\/|$)/, "cartographie"]
+  ];
+  for (var i = 0; i < rules.length; i++) {
+    if (rules[i][0].test(rest)) {
+      location.replace(base + (lang ? "?lang=" + lang : "") + (rules[i][1] ? "#" + rules[i][1] : ""));
+      return;
+    }
+  }
+  document.addEventListener("DOMContentLoaded", function () { var a = document.getElementById("home"); if (a) a.href = base; });
+})();
+</script>
+<style>
+  body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: #F2F5F5; color: #17324A; font: 17px/1.6 "Segoe UI", system-ui, sans-serif; }
+  main { max-width: 34rem; padding: 24px; }
+  h1 { font: 500 30px/1.2 Georgia, serif; margin: 0 0 12px; }
+  a { color: #1C5FAF; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Page introuvable / Page not found</h1>
+  <p>Cette adresse n'existe pas sur le site d'ATI-Normandy. This address does not exist on the ATI-Normandy site.</p>
+  <p><a id="home" href="/">Retour à l'accueil / Back to the home page</a></p>
+</main>
+</body>
+</html>
