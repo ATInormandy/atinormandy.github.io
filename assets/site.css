@@ -195,3 +195,91 @@ address { font-style: normal; }
 @media (max-width: 420px) {
   .legend { grid-template-columns: minmax(0, 1fr); }
 }
+
+/* ===================== v3: "Research programme" menu, Datum, Presentations ===================== */
+
+/* Drop-down in the navbar */
+.dd { position: relative; display: flex; align-self: stretch; }
+.dd-btn { display: flex; align-items: center; gap: 7px; padding: 0 12px; color: var(--nav-text); font: 400 15.5px/1 var(--sans); background: none; border: 0; border-top: 3px solid transparent; border-bottom: 3px solid transparent; cursor: pointer; white-space: nowrap; }
+.dd-btn:hover, .dd-btn[aria-expanded="true"] { color: #fff; }
+.dd-btn.is-current { color: #fff; background: rgba(255, 255, 255, .09); border-bottom-color: #7DB3EC; }
+.dd-btn svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+.dd-btn .caret { width: 14px; height: 14px; margin-left: -2px; transition: transform .15s ease; }
+.dd-btn[aria-expanded="true"] .caret { transform: rotate(180deg); }
+.dd-btn:focus-visible { outline-color: #7DB3EC; outline-offset: -3px; }
+.dd-menu { display: none; position: absolute; top: 100%; left: 0; z-index: 1001; min-width: 240px; padding: 6px 0; background: #fff; border: 1px solid var(--line); border-top: 0; border-radius: 0 0 4px 4px; box-shadow: 0 10px 22px rgba(0, 0, 0, .16); }
+.dd.open .dd-menu { display: block; }
+.tabs .dd-menu a { display: block; padding: 10px 18px; color: var(--ink); font-size: 15px; white-space: nowrap; border: 0; background: none; }
+.tabs .dd-menu a:hover { background: #F0F4F8; }
+.tabs .dd-menu a[aria-current="page"] { color: var(--link); font-weight: 700; background: #EEF4FB; }
+.tabs .dd-menu a:focus-visible { outline: 3px solid var(--tab); outline-offset: -3px; }
+
+/* Project page */
+.more { margin-top: 1.1em; }
+.more a { font-weight: 700; }
+
+/* Programme page */
+.sublinks { list-style: none; margin: 0; padding: 0; }
+.sublinks li { padding: 10px 0; border-bottom: 1px solid var(--line); }
+.sublinks li:first-child { padding-top: 0; }
+.sublinks li:last-child { border-bottom: 0; padding-bottom: 0; }
+.sublinks a { display: inline-block; margin-right: 10px; font-weight: 700; }
+.sublinks li > span { color: var(--ink-2); }
+
+/* Datum page */
+.intro { color: var(--ink-2); max-width: 95ch; }
+.table-wrap { overflow-x: auto; margin: 4px 0 12px; }
+.datum { width: 100%; border-collapse: collapse; font-size: 15px; line-height: 1.45; }
+.datum th, .datum td { padding: 10px 12px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }
+.datum thead th { font-size: 13.5px; color: var(--ink-2); background: #F7F8F9; border-bottom: 1px solid #B9C2CA; white-space: nowrap; }
+.datum tbody th { width: 15%; font-weight: 700; }
+.datum td:nth-child(2) { width: 36%; }
+.datum td:nth-child(3) { width: 29%; color: var(--ink-2); }
+.datum td:nth-child(4) { width: 20%; color: var(--ink-2); }
+.datum td a { white-space: nowrap; }
+
+/* Iterative maps page */
+.card-intro { padding: 12px 16px 2px; }
+.card-intro p { margin: 0 0 10px; max-width: 125ch; font-size: 15px; color: var(--ink-2); }
+.carto-card > .switcher { padding: 0 16px 12px; }
+
+/* Presentations page */
+.talk { display: grid; grid-template-columns: 290px minmax(0, 1fr); gap: 18px 26px; align-items: start; }
+.talk-cover { display: block; }
+.talk-cover img { display: block; width: 100%; height: auto; border: 1px solid var(--line); border-radius: 3px; }
+.talk-cover:hover img { border-color: var(--ink-2); }
+.talk-text h3 { margin: 0 0 8px; font: 700 18px/1.35 var(--sans); }
+.talk-text p { color: var(--ink-2); }
+.talk-actions { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 0; }
+.btn { display: inline-flex; align-items: center; min-height: 40px; padding: 8px 14px; font: 700 14.5px/1.2 var(--sans); color: #fff; background: var(--nav); border: 1px solid var(--nav); border-radius: 4px; text-decoration: none; }
+.btn:hover { background: #2F4254; text-decoration: none; }
+.btn-quiet { color: var(--ink); background: #fff; border-color: var(--line); }
+.btn-quiet:hover { background: #F4F6F8; border-color: var(--ink-2); }
+.pdf-view { margin-top: 18px; height: max(520px, calc(100vh - var(--nav-h) - 140px)); background: #EEF1F3; border: 1px solid var(--line); border-radius: 3px; }
+.pdf-view iframe { display: block; width: 100%; height: 100%; border: 0; }
+
+@media (max-width: 1060px) {
+  .dd { flex-direction: column; align-self: auto; }
+  .dd-btn { width: 100%; padding: 13px 20px 6px; font-size: 16.5px; color: #fff; border: 0; border-left: 3px solid transparent; cursor: default; }
+  .dd-btn.is-current { background: none; }
+  .dd-btn .caret { display: none; }
+  .dd-menu { display: block; position: static; min-width: 0; padding: 0 0 6px; background: transparent; border: 0; box-shadow: none; }
+  .tabs .dd-menu a { padding: 10px 20px 10px 47px; color: var(--nav-text); font-size: 16px; border-left: 3px solid transparent; }
+  .tabs .dd-menu a:hover { background: rgba(255, 255, 255, .06); color: #fff; }
+  .tabs .dd-menu a[aria-current="page"] { color: #fff; background: rgba(255, 255, 255, .09); border-left-color: #7DB3EC; }
+}
+@media (max-width: 760px) {
+  .datum thead { display: none; }
+  .datum, .datum tbody, .datum tr, .datum th, .datum td { display: block; width: 100% !important; }
+  .datum tr { padding: 12px 0; border-bottom: 1px solid var(--line); }
+  .datum th, .datum td { padding: 2px 0; border: 0; }
+  .datum tbody th { padding-bottom: 4px; font-size: 16px; }
+  .datum td a { white-space: normal; }
+  html[data-lang="fr"] .datum td:nth-child(3)::before { content: "Contenu : "; font-weight: 700; color: var(--ink); }
+  html[data-lang="fr"] .datum td:nth-child(4)::before { content: "Usage : "; font-weight: 700; color: var(--ink); }
+  html[data-lang="en"] .datum td:nth-child(3)::before { content: "Content: "; font-weight: 700; color: var(--ink); }
+  html[data-lang="en"] .datum td:nth-child(4)::before { content: "Use: "; font-weight: 700; color: var(--ink); }
+  .carto-card > .switcher { padding: 0 12px 10px; }
+  .talk { grid-template-columns: minmax(0, 1fr); }
+  .pdf-view { display: none; }
+}

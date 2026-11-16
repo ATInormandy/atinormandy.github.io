@@ -1,15 +1,21 @@
-/* ATI-Normandy — page tabs (#le-projet, #cartographie, #equipe, #publications, #partenaires),
-   language switch, mobile menu, map selector, team map and sizing of the Normandy map. */
+/* ATI-Normandy — page tabs, "Research programme" drop-down menu, language switch, mobile menu,
+   map selector, team map, slide viewer and sizing of the Normandy map. */
 (function () {
   "use strict";
   var root = document.documentElement;
-  var PAGES = ["le-projet", "cartographie", "equipe", "publications", "partenaires"];
-  /* other names that lead to a page (old addresses, French spellings) */
-  var ALIASES = { "": "le-projet", accueil: "le-projet", projet: "le-projet", programme: "le-projet",
-                  "lequipe": "equipe", "l%C3%A9quipe": "equipe", "léquipe": "equipe", team: "equipe",
-                  contact: "partenaires", partners: "partenaires", maps: "cartographie", carte: "cartographie" };
+  var PAGES = ["le-projet", "programme", "datum", "cartographie", "presentations", "equipe", "publications", "partenaires"];
+  var PROGRAMME = ["programme", "datum", "cartographie", "presentations"];   /* pages under "Research programme" */
+  /* other names that lead to a page (old addresses, other spellings) */
+  var ALIASES = { "": "le-projet", accueil: "le-projet", projet: "le-projet", project: "le-projet",
+                  overview: "programme", "research-programme": "programme",
+                  data: "datum", donnees: "datum",
+                  maps: "cartographie", carte: "cartographie", cartes: "cartographie", "iterative-maps": "cartographie",
+                  presentation: "presentations", slides: "presentations",
+                  lequipe: "equipe", team: "equipe",
+                  contact: "partenaires", partners: "partenaires" };
   var TITLES = { fr: "ATI-Normandy", en: "ATI-Normandy" };
   var current = null;
+  var narrowNav = window.matchMedia("(max-width: 1060px)");
 
   function each(sel, fn, scope) { Array.prototype.forEach.call((scope || document).querySelectorAll(sel), fn); }
   function save(key, value) { try { localStorage.setItem(key, value); } catch (e) { /* storage unavailable */ } }
@@ -41,44 +47,41 @@
   if (menuBtn && tabs) {
     menuBtn.addEventListener("click", function () { var open = tabs.classList.toggle("open"); menuBtn.setAttribute("aria-expanded", String(open)); });
     tabs.addEventListener("click", function (e) { if (e.target.closest("a")) closeMenu(); });
-    document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeMenu(); });
   }
 
-  /* ---- Tabset inside the project card ---- */
-  var tabButtons = Array.prototype.slice.call(document.querySelectorAll('.tabset-nav [role="tab"]'));
-  function selectTab(btn, focus) {
-    tabButtons.forEach(function (b) {
-      var on = b === btn;
-      b.setAttribute("aria-selected", String(on));
-      b.tabIndex = on ? 0 : -1;
-      var panel = document.getElementById(b.getAttribute("aria-controls"));
-      if (panel) panel.hidden = !on;
+  /* ---- "Research programme" drop-down ---- */
+  var dd = document.querySelector(".dd");
+  var ddBtn = dd ? dd.querySelector(".dd-btn") : null;
+  function closeDropdown() { if (!dd) return; dd.classList.remove("open"); ddBtn.setAttribute("aria-expanded", narrowNav.matches ? "true" : "false"); }
+  if (dd && ddBtn) {
+    ddBtn.addEventListener("click", function (e) {
+      if (narrowNav.matches) return;               /* in the phone menu the sub-pages are always listed */
+      e.stopPropagation();
+      var open = dd.classList.toggle("open");
+      ddBtn.setAttribute("aria-expanded", String(open));
+      if (open) { var first = dd.querySelector(".dd-menu a"); if (first && e.detail === 0) first.focus(); }
     });
-    if (focus) btn.focus();
+    dd.addEventListener("click", function (e) { if (e.target.closest(".dd-menu a")) closeDropdown(); });
+    document.addEventListener("click", function (e) { if (!e.target.closest(".dd")) closeDropdown(); });
+    var syncNav = function () { closeDropdown(); };
+    if (narrowNav.addEventListener) narrowNav.addEventListener("change", syncNav);
+    syncNav();
   }
-  tabButtons.forEach(function (b, i) {
-    b.addEventListener("click", function () { selectTab(b, false); });
-    b.addEventListener("keydown", function (e) {
-      if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
-        var next = tabButtons[(i + (e.key === "ArrowRight" ? 1 : tabButtons.length - 1)) % tabButtons.length];
-        selectTab(next, true);
-        e.preventDefault();
-      }
-    });
+  document.addEventListener("keydown", function (e) {
+    if (e.key !== "Escape") return;
+    if (dd && dd.classList.contains("open")) { closeDropdown(); ddBtn.focus(); }
+    closeMenu();
   });
-  if (tabButtons.length) selectTab(tabButtons[0], false);
 
-  /* ---- Interactive map (loaded the first time the page is opened) ---- */
+  /* ---- Interactive maps (loaded the first time the page is opened) ---- */
   var carto = document.getElementById("cartographie");
   var frame = document.getElementById("map-frame");
   var full = document.getElementById("map-full");
   var mapButtons = carto ? carto.querySelectorAll("[data-map]") : [];
   var base = carto ? (carto.getAttribute("data-map-base") || "") : "";
-  var chosenMap = null;
   function showMap(slug, fromUser) {
     if (!frame || !mapButtons.length) return;
     var chosen = carto.querySelector('[data-map="' + slug + '"]') || mapButtons[0];
-    chosenMap = chosen.getAttribute("data-map");
     Array.prototype.forEach.call(mapButtons, function (b) { b.setAttribute("aria-pressed", String(b === chosen)); });
     var url = base + (chosen.getAttribute("data-file") || "");
     if (full) full.href = url;
@@ -87,7 +90,7 @@
     if (fromUser) {
       try {
         var u = new URL(location.href);
-        if (chosen === mapButtons[0]) u.searchParams.delete("carte"); else u.searchParams.set("carte", chosenMap);
+        if (chosen === mapButtons[0]) u.searchParams.delete("carte"); else u.searchParams.set("carte", chosen.getAttribute("data-map"));
         history.replaceState(null, "", u);
       } catch (e) { }
     }
@@ -118,23 +121,32 @@
     labsMap.fitBounds(pts, { padding: [70, 70], maxZoom: 7 });
   }
 
+  /* ---- Slide viewer (desktop only; phones get the buttons) ---- */
+  function loadPdfViewer() {
+    var pdf = document.getElementById("pdf-frame");
+    if (!pdf || pdf.getAttribute("src")) return;
+    if (window.matchMedia("(max-width: 760px)").matches) return;
+    pdf.setAttribute("src", pdf.getAttribute("data-src"));
+  }
+
   /* ---- Page switching ---- */
   function pageFromHash() {
-    var h = decodeURIComponent((location.hash || "").replace(/^#/, ""));
-    if (PAGES.indexOf(h) > -1) return { page: h, alias: null };
+    var h = decodeURIComponent((location.hash || "").replace(/^#/, "")).toLowerCase();
+    if (PAGES.indexOf(h) > -1) return h;
     var key = h.normalize ? h.normalize("NFD").replace(/[̀-ͯ]/g, "") : h;
-    var p = ALIASES[h] || ALIASES[key];
-    return { page: p || "le-projet", alias: h };
+    key = key.replace(/['’]/g, "");
+    return ALIASES[h] || ALIASES[key] || "le-projet";
   }
   function showPage(scrollTop) {
-    var r = pageFromHash();
-    current = r.page;
-    PAGES.forEach(function (id) { var s = document.getElementById(id); if (s) s.hidden = id !== r.page; });
-    each("#tabs a", function (a) { if (a.getAttribute("data-page") === r.page) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
-    if (r.alias === "programme" && tabButtons[1]) selectTab(tabButtons[1], false);
-    if (r.page === "cartographie" && frame && !frame.getAttribute("src")) frame.setAttribute("src", frame.getAttribute("data-src"));
-    if (r.page === "equipe") initLabsMap();
-    if (r.page === "le-projet") fitPlate();
+    var page = pageFromHash();
+    current = page;
+    PAGES.forEach(function (id) { var s = document.getElementById(id); if (s) s.hidden = id !== page; });
+    each("#tabs a[data-page]", function (a) { if (a.getAttribute("data-page") === page) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
+    if (ddBtn) ddBtn.classList.toggle("is-current", PROGRAMME.indexOf(page) > -1);
+    if (page === "cartographie" && frame && !frame.getAttribute("src")) frame.setAttribute("src", frame.getAttribute("data-src"));
+    if (page === "presentations") loadPdfViewer();
+    if (page === "equipe") initLabsMap();
+    if (page === "le-projet") fitPlate();
     if (scrollTop) window.scrollTo(0, 0);
   }
   window.addEventListener("hashchange", function () { showPage(true); });
