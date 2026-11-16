@@ -1,18 +1,26 @@
-/* ATI-Normandy — page tabs, "Research programme" drop-down menu, language switch, mobile menu,
-   map selector, team map, slide viewer and sizing of the Normandy map. */
+/* ATI-Normandy — page switching, drop-down menus ("The project", "Research programme"),
+   language switch, mobile menu, map selector, team map, slide viewer and sizing of the Normandy map. */
 (function () {
   "use strict";
   var root = document.documentElement;
-  var PAGES = ["le-projet", "programme", "datum", "cartographie", "presentations", "equipe", "publications", "partenaires"];
-  var PROGRAMME = ["programme", "datum", "cartographie", "presentations"];   /* pages under "Research programme" */
-  /* other names that lead to a page (old addresses, other spellings) */
-  var ALIASES = { "": "le-projet", accueil: "le-projet", projet: "le-projet", project: "le-projet",
-                  overview: "programme", "research-programme": "programme",
-                  data: "datum", donnees: "datum",
-                  maps: "cartographie", carte: "cartographie", cartes: "cartographie", "iterative-maps": "cartographie",
-                  presentation: "presentations", slides: "presentations",
-                  lequipe: "equipe", team: "equipe",
-                  contact: "partenaires", partners: "partenaires" };
+  var PAGES = ["sujet", "partenaires", "equipe", "timeline", "rejoindre", "cartographie",
+               "phase-1", "phase-2", "phase-3", "publications", "contact"];
+  /* Other names that lead to a page: older addresses of this site and of ati-normandy.fr, English words.
+     "page#part" opens the page and scrolls to that part of it. */
+  var ALIASES = {
+    "": "sujet", accueil: "sujet", home: "sujet", projet: "sujet", project: "sujet", "le-projet": "sujet",
+    "the-project": "sujet", subject: "sujet", "sujet-de-letude": "sujet",
+    partners: "partenaires", partenaire: "partenaires",
+    lequipe: "equipe", team: "equipe", researchers: "equipe", members: "equipe",
+    chronologie: "timeline", agenda: "timeline", events: "timeline", evenements: "timeline",
+    join: "rejoindre", "join-us": "rejoindre", "nous-rejoindre": "rejoindre", recrutement: "rejoindre", jobs: "rejoindre",
+    maps: "cartographie", carte: "cartographie", cartes: "cartographie", "iterative-maps": "cartographie", "cartes-iteratives": "cartographie",
+    programme: "phase-1", "research-programme": "phase-1", "programme-de-recherche": "phase-1", overview: "phase-1",
+    phase1: "phase-1", phase2: "phase-2", phase3: "phase-3", wp1: "phase-1", wp2: "phase-2", wp3: "phase-3",
+    datum: "phase-1#datum", data: "phase-1#datum", donnees: "phase-1#datum",
+    presentations: "publications#presentations", presentation: "publications#presentations", slides: "publications#presentations",
+    preprints: "publications", communications: "publications"
+  };
   var TITLES = { fr: "ATI-Normandy", en: "ATI-Normandy" };
   var current = null;
   var narrowNav = window.matchMedia("(max-width: 1060px)");
@@ -49,27 +57,47 @@
     tabs.addEventListener("click", function (e) { if (e.target.closest("a")) closeMenu(); });
   }
 
-  /* ---- "Research programme" drop-down ---- */
-  var dd = document.querySelector(".dd");
-  var ddBtn = dd ? dd.querySelector(".dd-btn") : null;
-  function closeDropdown() { if (!dd) return; dd.classList.remove("open"); ddBtn.setAttribute("aria-expanded", narrowNav.matches ? "true" : "false"); }
-  if (dd && ddBtn) {
-    ddBtn.addEventListener("click", function (e) {
-      if (narrowNav.matches) return;               /* in the phone menu the sub-pages are always listed */
-      e.stopPropagation();
-      var open = dd.classList.toggle("open");
-      ddBtn.setAttribute("aria-expanded", String(open));
-      if (open) { var first = dd.querySelector(".dd-menu a"); if (first && e.detail === 0) first.focus(); }
+  /* ---- Drop-down menus in the navbar ---- */
+  var dds = Array.prototype.slice.call(document.querySelectorAll(".dd"));
+  dds.forEach(function (d) {
+    d.btn = d.querySelector(".dd-btn");
+    d.links = Array.prototype.slice.call(d.querySelectorAll(".dd-menu a"));
+    d.pages = d.links.map(function (a) { return a.getAttribute("data-page"); });
+  });
+  function closeDropdowns(except) {
+    dds.forEach(function (d) {
+      if (d === except) return;
+      d.classList.remove("open");
+      d.btn.setAttribute("aria-expanded", narrowNav.matches ? "true" : "false");   /* phone menu: sub-pages always listed */
     });
-    dd.addEventListener("click", function (e) { if (e.target.closest(".dd-menu a")) closeDropdown(); });
-    document.addEventListener("click", function (e) { if (!e.target.closest(".dd")) closeDropdown(); });
-    var syncNav = function () { closeDropdown(); };
-    if (narrowNav.addEventListener) narrowNav.addEventListener("change", syncNav);
-    syncNav();
   }
+  dds.forEach(function (d) {
+    d.btn.addEventListener("click", function (e) {
+      if (narrowNav.matches) return;
+      e.stopPropagation();
+      closeDropdowns(d);
+      var open = d.classList.toggle("open");
+      d.btn.setAttribute("aria-expanded", String(open));
+      if (open && e.detail === 0 && d.links[0]) d.links[0].focus();          /* opened with the keyboard */
+    });
+    d.addEventListener("click", function (e) { if (e.target.closest(".dd-menu a")) closeDropdowns(); });
+    d.addEventListener("keydown", function (e) {
+      if (narrowNav.matches || (e.key !== "ArrowDown" && e.key !== "ArrowUp")) return;
+      if (!d.classList.contains("open")) { if (e.target === d.btn) { d.btn.click(); e.preventDefault(); } return; }
+      var i = d.links.indexOf(document.activeElement);
+      var n = d.links.length;
+      var next = e.key === "ArrowDown" ? (i + 1) % n : (i < 0 ? n - 1 : (i - 1 + n) % n);
+      d.links[next].focus();
+      e.preventDefault();
+    });
+    d.addEventListener("focusout", function (e) { if (e.relatedTarget && !d.contains(e.relatedTarget)) closeDropdowns(); });
+  });
+  document.addEventListener("click", function (e) { if (!e.target.closest(".dd")) closeDropdowns(); });
+  if (narrowNav.addEventListener) narrowNav.addEventListener("change", function () { closeDropdowns(); });
+  closeDropdowns();
   document.addEventListener("keydown", function (e) {
     if (e.key !== "Escape") return;
-    if (dd && dd.classList.contains("open")) { closeDropdown(); ddBtn.focus(); }
+    dds.forEach(function (d) { if (d.classList.contains("open")) { closeDropdowns(); d.btn.focus(); } });
     closeMenu();
   });
 
@@ -130,24 +158,40 @@
   }
 
   /* ---- Page switching ---- */
-  function pageFromHash() {
-    var h = decodeURIComponent((location.hash || "").replace(/^#/, "")).toLowerCase();
-    if (PAGES.indexOf(h) > -1) return h;
+  function route() {
+    var h = (location.hash || "").replace(/^#/, "");
+    try { h = decodeURIComponent(h); } catch (e) { }
+    h = h.toLowerCase();
+    if (PAGES.indexOf(h) > -1) return { page: h, part: null };
     var key = h.normalize ? h.normalize("NFD").replace(/[̀-ͯ]/g, "") : h;
-    key = key.replace(/['’]/g, "");
-    return ALIASES[h] || ALIASES[key] || "le-projet";
+    key = key.replace(/['’]/g, "").replace(/[\s_]+/g, "-");
+    var target = ALIASES[h] || ALIASES[key];
+    if (!target) {                                   /* a part of a page, e.g. #datum */
+      var el = h && document.getElementById(h);
+      var sec = el && el.closest ? el.closest("section.page") : null;
+      target = sec ? sec.id + "#" + h : "sujet";
+    }
+    var bits = target.split("#");
+    return { page: bits[0], part: bits[1] || null };
+  }
+  function scrollToPart(id) {
+    var el = document.getElementById(id);
+    if (el) el.scrollIntoView({ block: "start" });
   }
   function showPage(scrollTop) {
-    var page = pageFromHash();
-    current = page;
-    PAGES.forEach(function (id) { var s = document.getElementById(id); if (s) s.hidden = id !== page; });
-    each("#tabs a[data-page]", function (a) { if (a.getAttribute("data-page") === page) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
-    if (ddBtn) ddBtn.classList.toggle("is-current", PROGRAMME.indexOf(page) > -1);
-    if (page === "cartographie" && frame && !frame.getAttribute("src")) frame.setAttribute("src", frame.getAttribute("data-src"));
-    if (page === "presentations") loadPdfViewer();
-    if (page === "equipe") initLabsMap();
-    if (page === "le-projet") fitPlate();
-    if (scrollTop) window.scrollTo(0, 0);
+    var r = route();
+    current = r.page;
+    PAGES.forEach(function (id) { var s = document.getElementById(id); if (s) s.hidden = id !== r.page; });
+    each("#tabs a[data-page]", function (a) { if (a.getAttribute("data-page") === r.page) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
+    dds.forEach(function (d) { d.btn.classList.toggle("is-current", d.pages.indexOf(r.page) > -1); });
+    if (r.page === "cartographie" && frame && !frame.getAttribute("src")) frame.setAttribute("src", frame.getAttribute("data-src"));
+    if (r.page === "publications") loadPdfViewer();
+    if (r.page === "equipe") initLabsMap();
+    if (r.page === "sujet") fitPlate();
+    if (r.part) {
+      scrollToPart(r.part);
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { if (route().part === r.part) scrollToPart(r.part); });
+    } else if (scrollTop) window.scrollTo(0, 0);
   }
   window.addEventListener("hashchange", function () { showPage(true); });
 
