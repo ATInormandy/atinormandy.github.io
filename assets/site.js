@@ -8,7 +8,7 @@
   var ALIASES = { "": "le-projet", accueil: "le-projet", projet: "le-projet", programme: "le-projet",
                   "lequipe": "equipe", "l%C3%A9quipe": "equipe", "léquipe": "equipe", team: "equipe",
                   contact: "partenaires", partners: "partenaires", maps: "cartographie", carte: "cartographie" };
-  var TITLES = { fr: "ANR ATI-Normandy", en: "ANR ATI-Normandy" };
+  var TITLES = { fr: "ATI-Normandy", en: "ATI-Normandy" };
   var current = null;
 
   function each(sel, fn, scope) { Array.prototype.forEach.call((scope || document).querySelectorAll(sel), fn); }
