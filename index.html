@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ATI-Normandy</title>
-<meta name="description" content="ATI-Normandy, projet ANR et Région Normandie (ICCER 2025) : adapter les infrastructures de transport normandes aux risques du changement climatique. Cartographie interactive, équipe, publications.">
+<meta name="description" content="ATI-Normandy, projet ANR et Région Normandie (ICCER 2025) : adapter les infrastructures de transport normandes aux risques du changement climatique. Programme de recherche, données, cartes, équipe, publications.">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css">
 <link rel="stylesheet" href="assets/site.css">
@@ -25,9 +25,21 @@
     <a href="#le-projet" data-page="le-projet">
       <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.6v.01"/></svg>
       <span lang="fr">Le projet</span><span lang="en">The project</span></a>
-    <a href="#cartographie" data-page="cartographie">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6.5 9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20z"/><path d="M9 4v13.5M15 6.5V20"/></svg>
-      <span lang="fr">Cartographie</span><span lang="en">Maps</span></a>
+
+    <div class="dd">
+      <button type="button" class="dd-btn" aria-expanded="false" aria-controls="dd-programme">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 21V4M5 4h11l-2 4 2 4H5"/></svg>
+        <span lang="fr">Programme de recherche</span><span lang="en">Research programme</span>
+        <svg class="caret" viewBox="0 0 24 24" aria-hidden="true"><path d="m7 10 5 5 5-5"/></svg>
+      </button>
+      <div class="dd-menu" id="dd-programme">
+        <a href="#programme" data-page="programme"><span lang="fr">Vue d'ensemble</span><span lang="en">Overview</span></a>
+        <a href="#datum" data-page="datum"><span lang="fr">Données (Datum)</span><span lang="en">Datum</span></a>
+        <a href="#cartographie" data-page="cartographie"><span lang="fr">Cartes itératives</span><span lang="en">Iterative maps</span></a>
+        <a href="#presentations" data-page="presentations"><span lang="fr">Présentations</span><span lang="en">Presentations</span></a>
+      </div>
+    </div>
+
     <a href="#equipe" data-page="equipe">
       <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3 19c.8-3.3 3.1-5 6-5s5.2 1.7 6 5"/><circle cx="17" cy="9" r="2.6"/><path d="M15.6 14.2c2.6-.4 4.7 1 5.4 4.3"/></svg>
       <span lang="fr">L'équipe</span><span lang="en">Team</span></a>
@@ -54,7 +66,6 @@
 <!-- ================= PAGE: LE PROJET ================= -->
 <section class="page has-side" id="le-projet" aria-labelledby="t-projet">
   <aside class="sidebar">
-    <h2 class="vh" id="t-projet"><span lang="fr">Le projet</span><span lang="en">The project</span></h2>
     <p class="side-subject" lang="fr">Adapter les infrastructures de transport en Normandie aux risques du changement climatique</p>
     <p class="side-subject" lang="en">Adapting Transport Infrastructure in Normandy Region to Risks from Climate Change</p>
     <p class="side-note" lang="fr">Projet de recherche financé par l'ANR et la Région Normandie, programme ICCER 2025.</p>
@@ -62,14 +73,9 @@
   </aside>
 
   <div class="main proj-grid">
-    <!-- Tabset card: summary / research programme -->
-    <div class="card tabset">
-      <div class="tabset-nav" role="tablist" aria-label="Le projet" data-fr-label="Le projet" data-en-label="The project">
-        <button type="button" role="tab" id="tab-resume" aria-controls="panel-resume" aria-selected="true"><span lang="fr">Résumé du projet</span><span lang="en">Project summary</span></button>
-        <button type="button" role="tab" id="tab-programme" aria-controls="panel-programme" aria-selected="false" tabindex="-1"><span lang="fr">Programme de recherche</span><span lang="en">Research programme</span></button>
-      </div>
-
-      <div class="card-body prose" role="tabpanel" id="panel-resume" aria-labelledby="tab-resume">
+    <div class="card">
+      <h2 class="card-title" id="t-projet"><span lang="fr">Résumé du projet</span><span lang="en">Project summary</span></h2>
+      <div class="card-body prose">
         <p lang="fr">Les infrastructures de transport portent le développement économique régional, mais le changement climatique dégrade leur qualité et leur fiabilité. La Normandie y est particulièrement exposée&nbsp;: crues de la Seine (2016), pluies extrêmes (juillet 2021), canicules (2019) et tempêtes (Ciara, Alex, Frederico) ont déjà perturbé routes, ponts et voies ferrées. Pour évaluer de façon cohérente de nouveaux investissements, comme la Ligne nouvelle Paris-Normandie (LNPN), il faut intégrer ces risques dès la planification.</p>
         <p lang="en">Transport infrastructure underpins regional economic development, but climate change is eroding its quality and reliability. Normandy is particularly exposed. Seine floods (2016), extreme rainfall (July 2021), heatwaves (2019) and storms (Ciara, Alex, Frederico) have already disrupted roads, bridges and railway lines. A consistent economic appraisal of new investments, such as the Ligne Nouvelle Paris-Normandie (LNPN), has to take these risks into account from the planning stage.</p>
 
@@ -87,28 +93,8 @@
 
         <p lang="fr">Les résultats s'adressent aux décideurs publics et aux gestionnaires d'infrastructures. Le modèle développé sera publié en open source.</p>
         <p lang="en">The results are meant for public decision-makers and infrastructure managers. The model will be released as open source.</p>
-      </div>
 
-      <div class="card-body prose" role="tabpanel" id="panel-programme" aria-labelledby="tab-programme">
-        <p lang="fr">Le projet dure 36&nbsp;mois et avance en trois phases, du diagnostic du réseau à l'analyse des politiques d'adaptation.</p>
-        <p lang="en">The project runs for 36 months in three phases, from diagnosing the network to analysing adaptation policy.</p>
-        <ol class="phases">
-          <li class="now">
-            <h3>Phase 1. <span lang="fr">Tâches fondamentales</span><span lang="en">Foundational tasks</span> <span class="status"><span lang="fr">en cours</span><span lang="en">under way</span></span></h3>
-            <p lang="fr">Revue de la littérature sur le changement climatique, les infrastructures de transport et les modèles QSE. Collecte des données sur le réseau normand (IGN BD TOPO) et cartographie SIG des tronçons à risque. Entretiens avec des professionnels, dont SNCF Réseau et les collectivités.</p>
-            <p lang="en">Literature review on climate change, transport infrastructure and QSE models. Data collection on the Normandy network (IGN BD TOPO) and GIS mapping of segments at risk. Interviews with professionals, including SNCF Réseau and local authorities.</p>
-          </li>
-          <li>
-            <h3>Phase 2. <span lang="fr">Développement du modèle QSE</span><span lang="en">Developing the QSE model</span></h3>
-            <p lang="fr">Un modèle simplifié sur un réseau géométrique régulier pour tester les formulations théoriques, puis un modèle empirique calibré sur la géographie de la Normandie et sur les flux de déplacements observés.</p>
-            <p lang="en">A simplified model on a regular geometric network to test the theoretical formulations, then an empirical model calibrated on Normandy's geography and on observed travel flows.</p>
-          </li>
-          <li>
-            <h3>Phase 3. <span lang="fr">Stratégies d'adaptation et analyse des politiques</span><span lang="en">Adaptation strategies and policy analysis</span></h3>
-            <p lang="fr">Le modèle sert à désigner les tronçons prioritaires et à évaluer les bénéfices des mises à niveau, ainsi que leurs effets sur le choix modal et la localisation des activités. Une table ronde réunira chercheurs, professionnels et décideurs en fin de projet.</p>
-            <p lang="en">The model is used to identify priority segments and to assess the benefits of upgrades, including their effects on mode choice and the location of activity. A round table with researchers, professionals and decision-makers closes the project.</p>
-          </li>
-        </ol>
+        <p class="more"><a href="#programme"><span lang="fr">Voir le programme de recherche</span><span lang="en">See the research programme</span></a></p>
       </div>
     </div>
 
@@ -142,8 +128,8 @@
               <li><svg class="sw" viewBox="0 0 26 12" aria-hidden="true"><path d="M2 6h22" stroke="#C7372A" stroke-width="1.3" stroke-linecap="round"/></svg><span lang="fr">Routes nationales</span><span lang="en">National roads</span></li>
               <li><svg class="sw" viewBox="0 0 26 12" aria-hidden="true"><path d="M1 6h24" stroke="#26323D" stroke-width="1.2"/><path d="M2 6h22" stroke="#26323D" stroke-width="6" stroke-dasharray="1.2 5.8"/></svg><span lang="fr">Voies ferrées principales</span><span lang="en">Main railway lines</span></li>
             </ul>
-            <p class="src" lang="fr">Sources&nbsp;: IGN (BD TOPO, ADMIN EXPRESS), DREAL Normandie et Géorisques (TRI, 2020), Natural Earth. <a href="#cartographie">Carte interactive</a></p>
-            <p class="src" lang="en">Sources: IGN (BD TOPO, ADMIN EXPRESS), DREAL Normandie and Géorisques (TRI, 2020), Natural Earth. <a href="#cartographie">Interactive map</a></p>
+            <p class="src" lang="fr">Sources&nbsp;: IGN (BD TOPO, ADMIN EXPRESS), DREAL Normandie et Géorisques (TRI, 2020), Natural Earth. <a href="#cartographie">Cartes itératives</a></p>
+            <p class="src" lang="en">Sources: IGN (BD TOPO, ADMIN EXPRESS), DREAL Normandie and Géorisques (TRI, 2020), Natural Earth. <a href="#cartographie">Iterative maps</a></p>
           </figcaption>
         </div>
       </figure>
@@ -151,25 +137,142 @@
   </div>
 </section>
 
-<!-- ================= PAGE: CARTOGRAPHIE =================
+<!-- ================= PAGE: PROGRAMME DE RECHERCHE — VUE D'ENSEMBLE ================= -->
+<section class="page has-side" id="programme" aria-labelledby="t-programme">
+  <aside class="sidebar">
+    <p class="side-subject" lang="fr">Adapter les infrastructures de transport en Normandie aux risques du changement climatique</p>
+    <p class="side-subject" lang="en">Adapting Transport Infrastructure in Normandy Region to Risks from Climate Change</p>
+  </aside>
+  <div class="main stack">
+    <div class="card">
+      <h2 class="card-title" id="t-programme"><span lang="fr">Programme de recherche</span><span lang="en">Research programme</span></h2>
+      <div class="card-body prose">
+        <p lang="fr">Le projet dure 36&nbsp;mois et avance en trois phases, du diagnostic du réseau à l'analyse des politiques d'adaptation.</p>
+        <p lang="en">The project runs for 36 months in three phases, from diagnosing the network to analysing adaptation policy.</p>
+        <ol class="phases">
+          <li class="now">
+            <h3>Phase 1. <span lang="fr">Tâches fondamentales</span><span lang="en">Foundational tasks</span> <span class="status"><span lang="fr">en cours</span><span lang="en">under way</span></span></h3>
+            <p lang="fr">Revue de la littérature sur le changement climatique, les infrastructures de transport et les modèles QSE. Collecte des données sur le réseau normand (IGN BD TOPO) et cartographie SIG des tronçons à risque. Entretiens avec des professionnels, dont SNCF Réseau et les collectivités.</p>
+            <p lang="en">Literature review on climate change, transport infrastructure and QSE models. Data collection on the Normandy network (IGN BD TOPO) and GIS mapping of segments at risk. Interviews with professionals, including SNCF Réseau and local authorities.</p>
+          </li>
+          <li>
+            <h3>Phase 2. <span lang="fr">Développement du modèle QSE</span><span lang="en">Developing the QSE model</span></h3>
+            <p lang="fr">Un modèle simplifié sur un réseau géométrique régulier pour tester les formulations théoriques, puis un modèle empirique calibré sur la géographie de la Normandie et sur les flux de déplacements observés.</p>
+            <p lang="en">A simplified model on a regular geometric network to test the theoretical formulations, then an empirical model calibrated on Normandy's geography and on observed travel flows.</p>
+          </li>
+          <li>
+            <h3>Phase 3. <span lang="fr">Stratégies d'adaptation et analyse des politiques</span><span lang="en">Adaptation strategies and policy analysis</span></h3>
+            <p lang="fr">Le modèle sert à désigner les tronçons prioritaires et à évaluer les bénéfices des mises à niveau, ainsi que leurs effets sur le choix modal et la localisation des activités. Une table ronde réunira chercheurs, professionnels et décideurs en fin de projet.</p>
+            <p lang="en">The model is used to identify priority segments and to assess the benefits of upgrades, including their effects on mode choice and the location of activity. A round table with researchers, professionals and decision-makers closes the project.</p>
+          </li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3 class="card-title"><span lang="fr">Dans cette rubrique</span><span lang="en">In this section</span></h3>
+      <div class="card-body">
+        <ul class="sublinks">
+          <li><a href="#datum"><span lang="fr">Données (Datum)</span><span lang="en">Datum</span></a>
+            <span lang="fr">Les données ouvertes utilisées dans les analyses, avec leur source et leur édition.</span><span lang="en">The open data used in the analyses, with their source and release.</span></li>
+          <li><a href="#cartographie"><span lang="fr">Cartes itératives</span><span lang="en">Iterative maps</span></a>
+            <span lang="fr">Les huit territoires à risque d'inondation, mis à jour au fil du projet.</span><span lang="en">The eight flood-risk areas, updated as the project progresses.</span></li>
+          <li><a href="#presentations"><span lang="fr">Présentations</span><span lang="en">Presentations</span></a>
+            <span lang="fr">Diapositives qui présentent la logique générale de la recherche.</span><span lang="en">Slides that present the general logic of the research.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PAGE: DATUM ================= -->
+<section class="page" id="datum" aria-labelledby="t-datum">
+  <div class="main">
+    <div class="card">
+      <h2 class="card-title" id="t-datum"><span lang="fr">Données utilisées (Datum)</span><span lang="en">Datum</span></h2>
+      <div class="card-body">
+        <p class="intro" lang="fr">Les données ouvertes utilisées dans les analyses du projet, avec leur source, leur édition et leur usage. Les données produites par le projet seront ajoutées au fil de son avancement.</p>
+        <p class="intro" lang="en">The open data used in the project's analyses, with their source, release and use. Data produced by the project will be added as the work progresses.</p>
+        <div class="table-wrap">
+          <table class="datum">
+            <thead>
+              <tr>
+                <th scope="col"><span lang="fr">Donnée</span><span lang="en">Data</span></th>
+                <th scope="col"><span lang="fr">Source et édition</span><span lang="en">Source and release</span></th>
+                <th scope="col"><span lang="fr">Contenu utilisé</span><span lang="en">Content used</span></th>
+                <th scope="col"><span lang="fr">Usage</span><span lang="en">Use</span></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row"><span lang="fr">Zones inondables (8 TRI)</span><span lang="en">Flood zones (8 TRI)</span></th>
+                <td><span lang="fr">Cartographie des TRI, DREAL Normandie et ministère de la Transition écologique, version SIG 2020 (cartes approuvées en 2013–2014).</span><span lang="en">TRI flood maps, DREAL Normandie and Ministry for the Ecological Transition, GIS release 2020 (maps approved in 2013–2014).</span> <a href="https://www.georisques.gouv.fr/">Géorisques</a></td>
+                <td><span lang="fr">Surfaces inondables des 51 cartes (débordement de cours d'eau, ruissellement, submersion marine), classes de hauteur d'eau</span><span lang="en">Flood surfaces of the 51 maps (river overflow, runoff, marine submersion), water-depth classes</span></td>
+                <td><span lang="fr">Routes coupées, logements et emplois inondés, exposition</span><span lang="en">Road closures, flooded homes and jobs, exposure</span></td>
+              </tr>
+              <tr>
+                <th scope="row"><span lang="fr">Réseau routier</span><span lang="en">Road network</span></th>
+                <td><span lang="fr">IGN BD TOPO 3.5, décembre 2025 (Ille-et-Vilaine&nbsp;: septembre 2025).</span><span lang="en">IGN BD TOPO 3.5, December 2025 (Ille-et-Vilaine: September 2025).</span> <a href="https://geoservices.ign.fr/bdtopo">geoservices.ign.fr</a></td>
+                <td><span lang="fr">Géométrie, vitesse, sens de circulation, accès, ponts, numéro, classe et gestionnaire des tronçons</span><span lang="en">Geometry, car speed, direction, access, bridges, road number, class and manager of each segment</span></td>
+                <td><span lang="fr">Réseau, temps de parcours</span><span lang="en">Network, travel times</span></td>
+              </tr>
+              <tr>
+                <th scope="row"><span lang="fr">Bâtiments</span><span lang="en">Buildings</span></th>
+                <td><span lang="fr">IGN BD TOPO 3.5 (mêmes fichiers).</span><span lang="en">IGN BD TOPO 3.5 (same files).</span> <a href="https://geoservices.ign.fr/bdtopo">geoservices.ign.fr</a></td>
+                <td><span lang="fr">Usage, emprise, nombre d'étages, logements</span><span lang="en">Use, footprint, floors, dwellings</span></td>
+                <td><span lang="fr">Localisation des logements et des emplois dans les communes</span><span lang="en">Locating homes and jobs inside communes</span></td>
+              </tr>
+              <tr>
+                <th scope="row"><span lang="fr">Communes</span><span lang="en">Communes</span></th>
+                <td><span lang="fr">IGN ADMIN EXPRESS COG CARTO, 1<sup>er</sup> janvier 2026.</span><span lang="en">IGN ADMIN EXPRESS COG CARTO, 1 January 2026.</span> <a href="https://geoservices.ign.fr/adminexpress">geoservices.ign.fr</a></td>
+                <td><span lang="fr">Limites communales, chefs-lieux&nbsp;; listes des communes des TRI converties aux codes 2026</span><span lang="en">Boundaries, town halls; TRI commune lists converted to 2026 codes</span></td>
+                <td><span lang="fr">Territoires d'étude, cellules de 500&nbsp;m</span><span lang="en">Study areas, 500 m cells</span></td>
+              </tr>
+              <tr>
+                <th scope="row"><span lang="fr">Flux domicile-travail</span><span lang="en">Commuting flows</span></th>
+                <td><span lang="fr">INSEE, recensement de la population 2023, mobilités professionnelles entre communes (publié en juin 2026).</span><span lang="en">INSEE, 2023 population census, commuting between communes (released June 2026).</span> <a href="https://www.insee.fr/fr/statistiques/8998300">insee.fr</a></td>
+                <td><span lang="fr">Actifs occupés par commune de résidence et commune de travail</span><span lang="en">Employed persons by commune of residence and commune of work</span></td>
+                <td><span lang="fr">Demande de déplacement</span><span lang="en">Travel demand</span></td>
+              </tr>
+              <tr>
+                <th scope="row"><span lang="fr">Valeur du temps</span><span lang="en">Value of time</span></th>
+                <td><span lang="fr">DGITM, valeurs de référence prescrites pour le calcul socio-économique (2019).</span><span lang="en">DGITM, reference values for socio-economic appraisal (2019).</span> <a href="https://www.ecologie.gouv.fr/politiques-publiques/evaluation-projets-transport">ecologie.gouv.fr</a></td>
+                <td><span lang="fr">10,6&nbsp;€ (2015) par personne et par heure, déplacements domicile-travail urbains</span><span lang="en">€10.6 (2015) per person-hour, urban commuting</span></td>
+                <td><span lang="fr">Coût des retards</span><span lang="en">Cost of delays</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="src" lang="fr">Données ouvertes, Licence Ouverte / Etalab 2.0. Elles alimentent les <a href="#cartographie">cartes itératives</a>.</p>
+        <p class="src" lang="en">Open data, Licence Ouverte / Etalab 2.0. They feed the <a href="#cartographie">iterative maps</a>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PAGE: CARTES ITÉRATIVES (address #cartographie) =================
      data-map-base = the folder that holds the map pages (index.html, rouen.html, ...): the cartes/ folder of this site.
      To update a map, replace its file in cartes/. -->
 <section class="page" id="cartographie" data-map-base="cartes/" aria-labelledby="t-carto">
   <div class="main">
     <div class="card carto-card">
       <div class="carto-head">
-        <h2 class="card-title" id="t-carto"><span lang="fr">Les huit territoires à risque important d'inondation (TRI) de Normandie</span><span lang="en">The eight high flood-risk areas (TRI) of Normandy</span></h2>
-        <div class="switcher" role="group" aria-label="Choisir une carte" data-fr-label="Choisir une carte" data-en-label="Choose a map">
-          <button type="button" data-map="normandie" data-file="" aria-pressed="true"><span lang="fr">Vue d'ensemble</span><span lang="en">Overview</span></button>
-          <button type="button" data-map="dieppe" data-file="dieppe.html" aria-pressed="false">Dieppe</button>
-          <button type="button" data-map="rouen" data-file="rouen.html" aria-pressed="false">Rouen</button>
-          <button type="button" data-map="evreux" data-file="evreux.html" aria-pressed="false">Évreux</button>
-          <button type="button" data-map="le-havre" data-file="le_havre.html" aria-pressed="false">Le Havre</button>
-          <button type="button" data-map="dives-ouistreham" data-file="dives_ouistreham.html" aria-pressed="false">Dives-Ouistreham</button>
-          <button type="button" data-map="caen" data-file="caen.html" aria-pressed="false">Caen</button>
-          <button type="button" data-map="cherbourg" data-file="cherbourg.html" aria-pressed="false">Cherbourg</button>
-          <button type="button" data-map="saint-malo" data-file="st_malo.html" aria-pressed="false">Saint-Malo</button>
-        </div>
+        <h2 class="card-title" id="t-carto"><span lang="fr">Cartes itératives&nbsp;: les huit territoires à risque important d'inondation (TRI) de Normandie</span><span lang="en">Iterative maps: the eight flood-risk areas (TRIs) of Normandy</span></h2>
+      </div>
+      <div class="card-intro">
+        <p lang="fr">Cette carte interactive donne une vue d'ensemble des huit territoires à risque important d'inondation (TRI) de Normandie. Elle montre les limites communales (IGN ADMIN EXPRESS), la population, les actifs résidents et les emplois de chaque commune (INSEE, recensement 2023), les zones inondables issues des cartographies officielles des TRI (DREAL / Géorisques) ainsi que les autoroutes et routes nationales (IGN BD TOPO). Les couches peuvent être affichées une à une pour explorer les données. Pour un affichage en pleine page, cliquez sur «&nbsp;Ouvrir en plein écran&nbsp;» sous la carte. Les boutons ci-dessous ouvrent la carte dédiée à chacun des huit TRI. Au fil du projet, ces cartes seront mises à jour et enrichies de nouvelles données et de résultats de recherche pour chaque TRI.</p>
+        <p lang="en">This interactive map provides an overview of Normandy's eight flood-risk areas (TRIs). It shows commune boundaries (IGN ADMIN EXPRESS), commune-level population, employed residents, and jobs (INSEE Census 2023); flood extents from the official TRI flood maps (DREAL / Géorisques); and motorways and national roads (IGN BD TOPO). Users can select different layers to explore the data interactively. For a full-page view, click "Open fullscreen" below the map. The buttons below open the dedicated map of each of the eight TRIs. As the project progresses, these maps will be iteratively updated and expanded with additional data and research results for each TRI.</p>
+      </div>
+      <div class="switcher" role="group" aria-label="Choisir une carte" data-fr-label="Choisir une carte" data-en-label="Choose a map">
+        <button type="button" data-map="normandie" data-file="" aria-pressed="true"><span lang="fr">Normandie, vue d'ensemble</span><span lang="en">Normandy overview</span></button>
+        <button type="button" data-map="dieppe" data-file="dieppe.html" aria-pressed="false">Dieppe</button>
+        <button type="button" data-map="rouen" data-file="rouen.html" aria-pressed="false">Rouen-Louviers-Austreberthe</button>
+        <button type="button" data-map="evreux" data-file="evreux.html" aria-pressed="false">Évreux</button>
+        <button type="button" data-map="le-havre" data-file="le_havre.html" aria-pressed="false">Le Havre</button>
+        <button type="button" data-map="dives-ouistreham" data-file="dives_ouistreham.html" aria-pressed="false">Dives-Ouistreham</button>
+        <button type="button" data-map="caen" data-file="caen.html" aria-pressed="false">Caen</button>
+        <button type="button" data-map="cherbourg" data-file="cherbourg.html" aria-pressed="false">Cherbourg-Octeville</button>
+        <button type="button" data-map="saint-malo" data-file="st_malo.html" aria-pressed="false">St-Malo–Baie du Mont-Saint-Michel</button>
       </div>
       <div class="map-frame">
         <p class="loading"><span lang="fr">Chargement de la carte…</span><span lang="en">Loading the map…</span></p>
@@ -180,20 +283,47 @@
       </div>
       <div class="card-foot">
         <div>
-          <p lang="fr">Survolez une commune pour voir sa population, ses actifs résidents et ses emplois. Les cartes par territoire ajoutent, pour chaque carte d'inondation, les routes coupées et l'effet sur les trajets domicile-travail (résultats provisoires). Carte&nbsp;: Seon Ju Lee et Asma Ouerhani (équipe de Caen).</p>
-          <p lang="en">Hover over a municipality to see its population, employed residents and jobs. The area maps add, for each flood map, the roads it closes and the effect on commuting (provisional results). Map by Seon Ju Lee and Asma Ouerhani (Caen team).</p>
-          <p class="src"><span lang="fr">Sources&nbsp;:</span><span lang="en">Sources:</span>
-            <a href="https://www.georisques.gouv.fr/">DREAL Normandie / Géorisques</a> (TRI 2020),
-            <a href="https://geoservices.ign.fr/bdtopo">IGN BD TOPO</a> (2025),
-            <a href="https://geoservices.ign.fr/adminexpress">IGN ADMIN EXPRESS</a> (2026),
-            <a href="https://www.insee.fr/">INSEE</a> (<span lang="fr">recensement 2023</span><span lang="en">2023 census</span>).
+          <p lang="fr">Carte&nbsp;: Seon Ju Lee et Asma Ouerhani (équipe de Caen). Les cartes par TRI comprennent des résultats provisoires.</p>
+          <p lang="en">Map by Seon Ju Lee and Asma Ouerhani (Caen team). The TRI maps include provisional results.</p>
+          <p class="src"><span lang="fr">Sources détaillées&nbsp;:</span><span lang="en">Detailed sources:</span> <a href="#datum"><span lang="fr">Données (Datum)</span><span lang="en">Datum</span></a>.
             <span lang="fr">Données ouvertes, Licence Ouverte / Etalab 2.0.</span><span lang="en">Open data, Licence Ouverte / Etalab 2.0.</span></p>
         </div>
         <a id="map-full" class="ext" href="cartes/" target="_blank" rel="noopener">
-          <span lang="fr">Ouvrir en plein écran</span><span lang="en">Open full screen</span>
+          <span lang="fr">Ouvrir en plein écran</span><span lang="en">Open fullscreen</span>
           <svg class="ico" viewBox="0 0 16 16" aria-hidden="true"><path d="M9 2h5v5M14 2 7.5 8.5M12 9.5V14H2V4h4.5"/></svg>
           <span class="vh"><span lang="fr">(nouvel onglet)</span><span lang="en">(new tab)</span></span>
         </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PAGE: PRÉSENTATIONS =================
+     To add a presentation: put the PDF (and a small cover image) in presentations/ and copy one <article class="talk"> block. -->
+<section class="page" id="presentations" aria-labelledby="t-pres">
+  <div class="main stack">
+    <div class="card">
+      <h2 class="card-title" id="t-pres"><span lang="fr">Présentations</span><span lang="en">Presentations</span></h2>
+      <div class="card-body">
+        <article class="talk">
+          <a class="talk-cover" href="presentations/2026-10-15_flooded-roads-commuting.pdf" target="_blank" rel="noopener">
+            <img src="presentations/2026-10-15_flooded-roads-commuting.png" width="580" height="327" alt="" loading="lazy">
+            <span class="vh"><span lang="fr">Ouvrir le PDF (nouvel onglet)</span><span lang="en">Open the PDF (new tab)</span></span>
+          </a>
+          <div class="talk-text">
+            <h3>Flooded roads and commuting costs in the eight flood-risk areas of Normandy</h3>
+            <p lang="fr">Diapositives choisies de la réunion d'équipe du 15 octobre 2026 (travail en cours). Elles présentent la logique générale de la recherche&nbsp;: questions, territoires, données et méthode, avec l'exemple de Caen. Seon Ju Lee, CREM, Université de Caen Normandie.</p>
+            <p lang="en">Selected slides from the team meeting of 15 October 2026 (work in progress). They present the general logic of the research: questions, study areas, data and method, with Caen as the example. Seon Ju Lee, CREM, University of Caen Normandy.</p>
+            <p class="talk-actions">
+              <a class="btn" href="presentations/2026-10-15_flooded-roads-commuting.pdf" target="_blank" rel="noopener"><span lang="fr">Ouvrir le PDF</span><span lang="en">Open the PDF</span><span class="vh"><span lang="fr">(nouvel onglet)</span><span lang="en">(new tab)</span></span></a>
+              <a class="btn btn-quiet" href="presentations/2026-10-15_flooded-roads-commuting.pdf" download><span lang="fr">Télécharger (PDF, 14 diapositives, 1,6 Mo)</span><span lang="en">Download (PDF, 14 slides, 1.6 MB)</span></a>
+            </p>
+          </div>
+        </article>
+        <div class="pdf-view">
+          <iframe id="pdf-frame" data-src="presentations/2026-10-15_flooded-roads-commuting.pdf#view=FitH"
+                  title="Flooded roads and commuting costs in the eight flood-risk areas of Normandy (PDF)"></iframe>
+        </div>
       </div>
     </div>
   </div>
