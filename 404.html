@@ -5,35 +5,37 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ATI-Normandy</title>
 <script>
-/* Old addresses of the previous ati-normandy.fr site (/fr/..., /en/...) are sent to the matching page of the new site. */
+/* Old addresses of the previous ati-normandy.fr site (/fr/..., /en/...) are sent to the matching page of this site.
+   BASE is the folder the site is published in: "/" for https://atinormandy.github.io/ or https://ati-normandy.fr/.
+   If the site is ever published as a project site (https://<account>.github.io/<repo>/), set BASE to "/<repo>/". */
 (function () {
-  var path = location.pathname, base = "/";
-  if (/\.github\.io$/.test(location.hostname)) {           /* project site: https://<user>.github.io/<repo>/... */
-    var parts = path.split("/");
-    base = "/" + parts[1] + "/";
-    path = "/" + parts.slice(2).join("/");
-  }
+  var BASE = "/";
+  var path = location.pathname;
+  if (path.indexOf(BASE) === 0) path = "/" + path.slice(BASE.length);
   var m = path.match(/^\/(fr|en)(\/.*)?$/);
   var lang = m ? m[1] : null, rest = m ? (m[2] || "/") : path;
-  var phase1Map = /phase=wp1/.test(location.search) && location.hash === "#map";
+  var phase = (location.search.match(/phase=wp([123])/) || [])[1];
   var rules = [
     [/^\/?$/, ""],
-    [/^\/project/, "le-projet"],
+    [/^\/project/, "sujet"],
     [/^\/work-packages\/wp1\/datum/, "datum"],
-    [/^\/work-packages/, phase1Map ? "cartographie" : "programme"],
+    [/^\/work-packages/, (phase === "1" && location.hash === "#map") ? "cartographie" : "phase-" + (phase || "1")],
     [/^\/researchers/, "equipe"],
     [/^\/partners/, "partenaires"],
     [/^\/publications/, "publications"],
-    [/^\/(contact|join|members)/, "contact"],
+    [/^\/(agenda|events|news)/, "timeline"],
+    [/^\/join/, "rejoindre"],
+    [/^\/(contact|members)/, "contact"],
     [/^\/carte(\/|$)/, "cartographie"]
   ];
   for (var i = 0; i < rules.length; i++) {
     if (rules[i][0].test(rest)) {
-      location.replace(base + (lang ? "?lang=" + lang : "") + (rules[i][1] ? "#" + rules[i][1] : ""));
+      var target = BASE + (lang ? "?lang=" + lang : "") + (rules[i][1] ? "#" + rules[i][1] : "");
+      if (target !== location.pathname + location.search + location.hash) location.replace(target);
       return;
     }
   }
-  document.addEventListener("DOMContentLoaded", function () { var a = document.getElementById("home"); if (a) a.href = base; });
+  document.addEventListener("DOMContentLoaded", function () { var a = document.getElementById("home"); if (a) a.href = BASE; });
 })();
 </script>
 <style>
