@@ -1,5 +1,5 @@
 # Pages CMS (https://pagescms.org): editing forms for the ATI-Normandy site.
-# The lists shown on the site are kept in data/*.json; presentation files go in presentations/.
+# The lists shown on the site are kept in data/*.json; presentation figures and slides go in presentations/.
 # Each save in Pages CMS is a commit to main, and GitHub Pages updates the site about a minute later.
 
 media:
@@ -18,47 +18,68 @@ content:
     fields:
       - name: items
         label: Présentations / Presentations
+        description: "L'ordre de cette liste est celui du menu et de la page Présentations (faites glisser pour le changer). / The order of this list is the order of the menu and of the Presentations page (drag to change it)."
         type: object
         list:
           collapsible:
             collapsed: true
-            summary: "{date} {title}"
+            summary: "{author}: {title}"
         fields:
+          - name: author
+            label: Présentateur ou présentatrice / Presenter
+            type: string
+            required: true
+            description: "Ex. : Asma Ouerhani. Affiché dans le menu avec le titre. / Shown in the menu with the title."
+          - name: affiliation
+            label: Affiliation
+            type: string
+            description: "Ex. : CREM, Université de Caen Normandie"
+          - name: title
+            label: Titre / Title
+            type: string
+            required: true
           - name: date
             label: Date
             type: date
             required: true
             options:
               format: yyyy-MM-dd
-          - name: title
-            label: Titre / Title
+          - name: event_fr
+            label: Événement (FR) / Event (FR)
             type: string
-            required: true
-          - name: authors
-            label: Auteurs / Authors
+            description: "Ex. : Séminaire interne de l'équipe ATI-Normandy"
+          - name: event_en
+            label: Événement (EN) / Event (EN)
             type: string
-            description: "Ex. : Seon Ju Lee (CREM, Université de Caen Normandie)"
-          - name: description_fr
-            label: Description (FR)
+            description: "Ex. : ATI-Normandy internal team seminar"
+          - name: summary_fr
+            label: Résumé court (FR) / Short summary (FR)
             type: text
-          - name: description_en
-            label: Description (EN)
+            description: "Deux ou trois phrases, affichées dans la liste des présentations. / Two or three sentences, shown in the list of presentations."
+          - name: summary_en
+            label: Résumé court (EN) / Short summary (EN)
             type: text
+          - name: body_fr
+            label: Présentation en français / Presentation in French
+            type: rich-text
+            description: "Le contenu de la présentation : intertitres, paragraphes, listes et figures (insérez les images avec le bouton image). / The content of the presentation: headings, paragraphs, lists and figures (insert pictures with the image button)."
+            options:
+              format: html
+              media: presentations
+          - name: body_en
+            label: Présentation en anglais / Presentation in English
+            type: rich-text
             description: "Facultatif : sans texte anglais, le texte français est affiché. / Optional: without English text, the French text is shown."
+            options:
+              format: html
+              media: presentations
           - name: pdf
-            label: Fichier PDF / PDF file
+            label: Diapositives en PDF / Slides as PDF
             type: file
-            required: true
+            description: "Facultatif : un lien vers les diapositives apparaît en bas de la page. / Optional: a link to the slides appears at the bottom of the page."
             options:
               media: presentations
               extensions: [pdf]
-          - name: cover
-            label: Image de couverture / Cover image
-            type: image
-            description: "Facultatif, par exemple la première diapositive en PNG. / Optional, for example the first slide as a PNG."
-            options:
-              media: presentations
-              extensions: [png, jpg, jpeg, webp]
 
   - name: publications
     label: Publications
