@@ -17,7 +17,7 @@
   var phase = (location.search.match(/phase=wp([123])/) || [])[1];
   var rules = [
     [/^\/?$/, ""],
-    [/^\/project/, "sujet"],
+    [/^\/project/, "projet"],
     [/^\/work-packages\/wp1\/datum/, "datum"],
     [/^\/work-packages/, (phase === "1" && location.hash === "#map") ? "cartographie" : "phase-" + (phase || "1")],
     [/^\/researchers/, "equipe"],
