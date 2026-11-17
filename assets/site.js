@@ -4,13 +4,13 @@
 (function () {
   "use strict";
   var root = document.documentElement;
-  var PAGES = ["sujet", "partenaires", "equipe", "timeline", "rejoindre", "cartographie",
+  var PAGES = ["projet", "sujet", "partenaires", "equipe", "timeline", "rejoindre", "cartographie",
                "programme", "phase-1", "phase-2", "phase-3", "presentations", "presentation", "publications", "contact"];
   /* Other names that lead to a page: older addresses of this site and of ati-normandy.fr, English words.
      "page#part" opens the page and scrolls to that part of it. */
   var ALIASES = {
-    "": "sujet", accueil: "sujet", home: "sujet", projet: "sujet", project: "sujet", "le-projet": "sujet",
-    "the-project": "sujet", subject: "sujet", "sujet-de-letude": "sujet",
+    "": "projet", accueil: "projet", home: "projet", project: "projet", "le-projet": "projet", "the-project": "projet",
+    subject: "sujet", "the-subject": "sujet", "sujet-de-letude": "sujet",
     partners: "partenaires", partenaire: "partenaires",
     lequipe: "equipe", team: "equipe", researchers: "equipe", members: "equipe",
     chronologie: "timeline", agenda: "timeline", events: "timeline", evenements: "timeline",
@@ -38,6 +38,7 @@
     updateTitle();
     each("[data-" + lang + "-label]", function (el) { el.setAttribute("aria-label", el.getAttribute("data-" + lang + "-label")); });
     each("[data-" + lang + "-title]", function (el) { el.setAttribute("title", el.getAttribute("data-" + lang + "-title")); });
+    each("[data-" + lang + "-alt]", function (el) { el.setAttribute("alt", el.getAttribute("data-" + lang + "-alt")); });
     each(".lang button", function (b) { b.setAttribute("aria-pressed", String(b.getAttribute("data-set-lang") === lang)); });
     var plate = document.getElementById("plate");
     var t = plate && plate.querySelector("title");
@@ -514,7 +515,7 @@
     if (!target) {                                   /* a part of a page, e.g. #datum */
       var el = h && document.getElementById(h);
       var sec = el && el.closest ? el.closest("section.page") : null;
-      target = sec ? sec.id.replace(/^page-/, "") + "#" + h : "sujet";
+      target = sec ? sec.id.replace(/^page-/, "") + "#" + h : "projet";
     }
     var bits = target.split("#");
     return { page: bits[0], part: bits[1] || null, param: null };
@@ -542,6 +543,11 @@
   }
   function showPage(scrollTop) {
     var r = route();
+    /* a page missing from index.html (e.g. an older copy kept by the browser): show the first page there is */
+    if (!document.getElementById("page-" + r.page)) {
+      var first = PAGES.filter(function (id) { return document.getElementById("page-" + id); })[0];
+      if (first) r = { page: first, part: null, param: null };
+    }
     current = r.page;
     PAGES.forEach(function (id) { var s = document.getElementById("page-" + id); if (s) s.hidden = id !== r.page; });
     markCurrent(r);
@@ -549,7 +555,7 @@
     updateTitle();
     if (r.page === "cartographie" && frame && !frame.getAttribute("src")) frame.setAttribute("src", frame.getAttribute("data-src"));
     if (r.page === "equipe") initLabsMap();
-    if (r.page === "sujet") fitPlate();
+    if (r.page === "projet") fitPlate();
     pendingPart = r.part;
     ensureData(r);
     if (r.part) {
