@@ -18,18 +18,38 @@
 </head>
 <body>
 
-<!-- ================= NAVBAR =================
-     Menu: The project ▾ / Iterative maps / Research programme ▾ / Publications / Contact -->
+<!-- ================= MASTHEAD AND MENU =================
+     Menu: The project ▾ / Iterative maps / Research programme ▾ / Presentations ▾ / Publications / Contact.
+     A menu name opens its page; the arrow next to it (or hovering with a mouse) opens its drop-down list.
+     The Presentations list is filled from data/presentations.json. -->
+<div class="masthead">
+  <a class="mast-brand" href="#sujet">
+    <svg class="mast-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="6" fill="#17324A"/><path d="M5 11.5h22" stroke="#C7372A" stroke-width="3" stroke-linecap="round"/><path d="M4.5 19.5c2.6-2.4 5.2-2.4 7.8 0s5.2 2.4 7.8 0 5.2-2.4 7.4-.3M4.5 25c2.6-2.4 5.2-2.4 7.8 0s5.2 2.4 7.8 0 5.2-2.4 7.4-.3" fill="none" stroke="#7DB3EC" stroke-width="2.4" stroke-linecap="round"/></svg>
+    <span class="mast-text">
+      <span class="mast-name">ATI-Normandy</span>
+      <span class="mast-tagline" lang="fr">Adapter les infrastructures de transport en Normandie aux risques du changement climatique</span>
+      <span class="mast-tagline" lang="en">Adapting Transport Infrastructure in Normandy Region to Risks from Climate Change</span>
+    </span>
+  </a>
+  <div class="lang" role="group" aria-label="Langue / Language">
+    <button type="button" data-set-lang="fr" aria-pressed="true">FR</button>
+    <button type="button" data-set-lang="en" aria-pressed="false">EN</button>
+  </div>
+</div>
+
 <header class="navbar">
-  <a class="brand" href="#sujet">ATI-Normandy</a>
+  <button class="menu-btn" type="button" aria-expanded="false" aria-controls="tabs">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg><span>Menu</span>
+  </button>
+  <span class="nav-current" aria-hidden="true"></span>
   <nav id="tabs" class="tabs" aria-label="Pages du site" data-fr-label="Pages du site" data-en-label="Site pages">
 
-    <div class="dd" data-group="projet">
-      <button type="button" class="dd-btn" aria-expanded="false" aria-controls="dd-projet">
+    <div class="dd" data-pages="sujet partenaires equipe timeline rejoindre">
+      <a class="dd-link" href="#sujet" data-page="sujet">
         <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.6v.01"/></svg>
-        <span lang="fr">Le projet</span><span lang="en">The project</span>
-        <svg class="caret" viewBox="0 0 24 24" aria-hidden="true"><path d="m7 10 5 5 5-5"/></svg>
-      </button>
+        <span lang="fr">Le projet</span><span lang="en">The project</span></a>
+      <button type="button" class="dd-toggle" aria-expanded="false" aria-controls="dd-projet" aria-label="Sous-menu Le projet" data-fr-label="Sous-menu Le projet" data-en-label="The project submenu">
+        <svg class="caret" viewBox="0 0 24 24" aria-hidden="true"><path d="m7 10 5 5 5-5"/></svg></button>
       <div class="dd-menu" id="dd-projet">
         <a href="#sujet" data-page="sujet"><span lang="fr">Sujet de l'étude</span><span lang="en">The subject</span></a>
         <a href="#partenaires" data-page="partenaires"><span lang="fr">Partenaires</span><span lang="en">Partners</span></a>
@@ -43,17 +63,26 @@
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6.5 9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20z"/><path d="M9 4v13.5M15 6.5V20"/></svg>
       <span lang="fr">Cartes itératives</span><span lang="en">Iterative maps</span></a>
 
-    <div class="dd" data-group="programme">
-      <button type="button" class="dd-btn" aria-expanded="false" aria-controls="dd-programme">
+    <div class="dd" data-pages="programme phase-1 phase-2 phase-3">
+      <a class="dd-link" href="#programme" data-page="programme">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 21V4M5 4h11l-2 4 2 4H5"/></svg>
-        <span lang="fr">Programme de recherche</span><span lang="en">Research programme</span>
-        <svg class="caret" viewBox="0 0 24 24" aria-hidden="true"><path d="m7 10 5 5 5-5"/></svg>
-      </button>
+        <span lang="fr">Programme de recherche</span><span lang="en">Research programme</span></a>
+      <button type="button" class="dd-toggle" aria-expanded="false" aria-controls="dd-programme" aria-label="Sous-menu Programme de recherche" data-fr-label="Sous-menu Programme de recherche" data-en-label="Research programme submenu">
+        <svg class="caret" viewBox="0 0 24 24" aria-hidden="true"><path d="m7 10 5 5 5-5"/></svg></button>
       <div class="dd-menu" id="dd-programme">
         <a href="#phase-1" data-page="phase-1"><span class="dd-kicker">Phase 1</span><span lang="fr">Tâches fondamentales</span><span lang="en">First and fundamental tasks</span></a>
         <a href="#phase-2" data-page="phase-2"><span class="dd-kicker">Phase 2</span><span lang="fr">Développement du modèle QSE</span><span lang="en">QSE model development</span></a>
         <a href="#phase-3" data-page="phase-3"><span class="dd-kicker">Phase 3</span><span lang="fr">Stratégies d'adaptation et analyse de politiques</span><span lang="en">Adaptation strategies and policy analysis</span></a>
       </div>
+    </div>
+
+    <div class="dd" data-pages="presentations presentation">
+      <a class="dd-link" href="#presentations" data-page="presentations">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M12 16v4M8 20h8"/></svg>
+        <span lang="fr">Présentations</span><span lang="en">Presentations</span></a>
+      <button type="button" class="dd-toggle" aria-expanded="false" aria-controls="dd-presentations" aria-label="Sous-menu Présentations" data-fr-label="Sous-menu Présentations" data-en-label="Presentations submenu">
+        <svg class="caret" viewBox="0 0 24 24" aria-hidden="true"><path d="m7 10 5 5 5-5"/></svg></button>
+      <div class="dd-menu dd-wide" id="dd-presentations"><!-- one link per presentation, from data/presentations.json --></div>
     </div>
 
     <a href="#publications" data-page="publications">
@@ -63,21 +92,12 @@
       <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5.5" width="18" height="13" rx="2"/><path d="m3.5 7 8.5 6.5L20.5 7"/></svg>
       <span>Contact</span></a>
   </nav>
-  <div class="nav-right">
-    <div class="lang" role="group" aria-label="Langue / Language">
-      <button type="button" data-set-lang="fr" aria-pressed="true">FR</button>
-      <button type="button" data-set-lang="en" aria-pressed="false">EN</button>
-    </div>
-    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="tabs">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg><span class="vh">Menu</span>
-    </button>
-  </div>
 </header>
 
 <main>
 
 <!-- ================= LE PROJET : SUJET DE L'ÉTUDE ================= -->
-<section class="page has-side" id="sujet" aria-labelledby="t-sujet">
+<section class="page has-side" id="page-sujet" aria-labelledby="t-sujet">
   <aside class="sidebar">
     <p class="side-subject" lang="fr">Adapter les infrastructures de transport en Normandie aux risques du changement climatique</p>
     <p class="side-subject" lang="en">Adapting Transport Infrastructure in Normandy Region to Risks from Climate Change</p>
@@ -112,22 +132,11 @@
     </div>
 
     <div class="stack">
-      <div class="card">
-        <h3 class="card-title"><span lang="fr">Informations générales</span><span lang="en">Key facts</span></h3>
-        <div class="card-body">
-          <ul class="facts">
-            <li><span lang="fr">Financé par l'<a href="https://anr.fr/">ANR</a> et la <a href="https://www.normandie.fr/">Région Normandie</a>, programme ICCER 2025</span><span lang="en">Funded by <a href="https://anr.fr/">ANR</a> and <a href="https://www.normandie.fr/">Région Normandie</a>, ICCER 2025 programme</span></li>
-            <li><span lang="fr">Durée&nbsp;: 36&nbsp;mois (2025–2028)</span><span lang="en">Duration: 36 months (2025–2028)</span></li>
-            <li><span lang="fr">Budget&nbsp;: 174&nbsp;k€</span><span lang="en">Budget: €174k</span></li>
-            <li><span lang="fr">Coordination&nbsp;: Daniel Danau (CREM, Université de Caen Normandie)</span><span lang="en">Coordinator: Daniel Danau (CREM, University of Caen Normandy)</span></li>
-            <li><span lang="fr">Responsable de l'équipe LEM&nbsp;: Moez Kilani (Université du Littoral Côte d'Opale)</span><span lang="en">LEM team lead: Moez Kilani (University of the Littoral Opal Coast)</span></li>
-          </ul>
-        </div>
-      </div>
-
       <figure class="card plate-card">
         <h3 class="card-title"><span lang="fr">Territoire d'étude</span><span lang="en">Study area</span></h3>
         <div class="card-body">
+          <p class="plate-note" lang="fr">Les informations sur le territoire d'étude seront complétées et mises à jour au fil du projet.</p>
+          <p class="plate-note" lang="en">More information on the study area will be added and updated as the project progresses.</p>
           <div class="plate-box">
             <!-- Drawn by assets/plate.js (generated from the project's open data; see README). -->
             <div id="plate"
@@ -146,12 +155,25 @@
           </figcaption>
         </div>
       </figure>
+
+      <div class="card">
+        <h3 class="card-title"><span lang="fr">Informations générales</span><span lang="en">Key facts</span></h3>
+        <div class="card-body">
+          <ul class="facts">
+            <li><span lang="fr">Financé par l'<a href="https://anr.fr/">ANR</a> et la <a href="https://www.normandie.fr/">Région Normandie</a>, programme ICCER 2025</span><span lang="en">Funded by <a href="https://anr.fr/">ANR</a> and <a href="https://www.normandie.fr/">Région Normandie</a>, ICCER 2025 programme</span></li>
+            <li><span lang="fr">Durée&nbsp;: 36&nbsp;mois (2025–2028)</span><span lang="en">Duration: 36 months (2025–2028)</span></li>
+            <li><span lang="fr">Budget&nbsp;: 174&nbsp;k€</span><span lang="en">Budget: €174k</span></li>
+            <li><span lang="fr">Coordination&nbsp;: Daniel Danau (CREM, Université de Caen Normandie)</span><span lang="en">Coordinator: Daniel Danau (CREM, University of Caen Normandy)</span></li>
+            <li><span lang="fr">Responsable de l'équipe LEM&nbsp;: Moez Kilani (Université du Littoral Côte d'Opale)</span><span lang="en">LEM team lead: Moez Kilani (University of the Littoral Opal Coast)</span></li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- ================= LE PROJET : PARTENAIRES ================= -->
-<section class="page has-side" id="partenaires" aria-labelledby="t-part">
+<section class="page has-side" id="page-partenaires" aria-labelledby="t-part">
   <aside class="sidebar">
     <p class="side-subject" lang="fr">Adapter les infrastructures de transport en Normandie aux risques du changement climatique</p>
     <p class="side-subject" lang="en">Adapting Transport Infrastructure in Normandy Region to Risks from Climate Change</p>
@@ -177,7 +199,7 @@
 </section>
 
 <!-- ================= LE PROJET : ÉQUIPE ================= -->
-<section class="page" id="equipe" aria-labelledby="t-equipe">
+<section class="page" id="page-equipe" aria-labelledby="t-equipe">
   <h2 class="vh" id="t-equipe"><span lang="fr">Équipe</span><span lang="en">Team</span></h2>
   <div class="main team-grid">
     <div class="card">
@@ -215,7 +237,7 @@
 
 <!-- ================= LE PROJET : CHRONOLOGIE / TIMELINE =================
      The events are in data/timeline.json. Edit them in Pages CMS (see README.md). -->
-<section class="page" id="timeline" aria-labelledby="t-timeline">
+<section class="page" id="page-timeline" aria-labelledby="t-timeline">
   <div class="main">
     <div class="card">
       <h2 class="card-title" id="t-timeline"><span lang="fr">Chronologie</span><span lang="en">Timeline</span></h2>
@@ -230,7 +252,7 @@
 </section>
 
 <!-- ================= LE PROJET : NOUS REJOINDRE ================= -->
-<section class="page has-side" id="rejoindre" aria-labelledby="t-join">
+<section class="page has-side" id="page-rejoindre" aria-labelledby="t-join">
   <aside class="sidebar">
     <p class="side-subject" lang="fr">Adapter les infrastructures de transport en Normandie aux risques du changement climatique</p>
     <p class="side-subject" lang="en">Adapting Transport Infrastructure in Normandy Region to Risks from Climate Change</p>
@@ -251,9 +273,10 @@
 </section>
 
 <!-- ================= CARTES ITÉRATIVES (address #cartographie) =================
+     Each page is a <section id="page-…"> shown for the address #… (here #cartographie), so the browser does not scroll past the title band.
      data-map-base = the folder that holds the map pages (index.html, rouen.html, ...): the cartes/ folder of this site.
      To update a map, replace its file in cartes/. -->
-<section class="page" id="cartographie" data-map-base="cartes/" aria-labelledby="t-carto">
+<section class="page" id="page-cartographie" data-map-base="cartes/" aria-labelledby="t-carto">
   <div class="main">
     <div class="card carto-card">
       <div class="carto-head">
@@ -298,11 +321,53 @@
   </div>
 </section>
 
+<!-- ================= PROGRAMME DE RECHERCHE : VUE D'ENSEMBLE / OVERVIEW ================= -->
+<section class="page" id="page-programme" aria-labelledby="t-programme">
+  <div class="main">
+    <div class="card">
+      <h2 class="card-title" id="t-programme"><span lang="fr">Programme de recherche</span><span lang="en">Research programme</span></h2>
+      <div class="card-body">
+        <p class="intro" lang="fr">Le projet se déroule sur 36&nbsp;mois et s'organise autour de trois grandes phases de travail, du diagnostic territorial à l'analyse des politiques d'adaptation.</p>
+        <p class="intro" lang="en">The project runs over 36 months and is organised around three main phases, from territorial diagnostic to adaptation policy analysis.</p>
+        <ol class="phase-list">
+          <li><a href="#phase-1">
+            <span class="phase-num" aria-hidden="true"><small>Phase</small>1</span>
+            <span class="phase-text">
+              <span class="phase-name"><span class="vh">Phase 1. </span><span lang="fr">Tâches fondamentales</span><span lang="en">First and fundamental tasks</span> <span class="status"><span lang="fr">en cours</span><span lang="en">under way</span></span></span>
+              <span class="phase-desc" lang="fr">Revue de littérature, collecte de données et diagnostic de l'infrastructure</span>
+              <span class="phase-desc" lang="en">Literature review, data collection and infrastructure diagnostic</span>
+            </span>
+            <svg class="phase-go" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+          </a></li>
+          <li><a href="#phase-2">
+            <span class="phase-num" aria-hidden="true"><small>Phase</small>2</span>
+            <span class="phase-text">
+              <span class="phase-name"><span class="vh">Phase 2. </span><span lang="fr">Développement du modèle QSE</span><span lang="en">QSE model development</span></span>
+              <span class="phase-desc" lang="fr">Un modèle simple puis empirique pour évaluer les effets du changement climatique</span>
+              <span class="phase-desc" lang="en">Simple then empirical model to evaluate climate change impacts</span>
+            </span>
+            <svg class="phase-go" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+          </a></li>
+          <li><a href="#phase-3">
+            <span class="phase-num" aria-hidden="true"><small>Phase</small>3</span>
+            <span class="phase-text">
+              <span class="phase-name"><span class="vh">Phase 3. </span><span lang="fr">Stratégies d'adaptation et analyse de politiques</span><span lang="en">Adaptation strategies and policy analysis</span></span>
+              <span class="phase-desc" lang="fr">Applications du modèle QSE aux scénarios d'infrastructure et de choix modal</span>
+              <span class="phase-desc" lang="en">QSE model applications to infrastructure and mode choice scenarios</span>
+            </span>
+            <svg class="phase-go" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+          </a></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ================= PROGRAMME DE RECHERCHE : PHASE 1 ================= -->
-<section class="page" id="phase-1" aria-labelledby="t-ph1">
+<section class="page" id="page-phase-1" aria-labelledby="t-ph1">
   <div class="main stack">
     <div class="card">
-      <h2 class="card-title"><span lang="fr">Programme de recherche</span><span lang="en">Research programme</span></h2>
+      <h2 class="card-title"><a href="#programme"><span lang="fr">Programme de recherche</span><span lang="en">Research programme</span></a></h2>
       <div class="card-body phase-intro">
         <p lang="fr">Le projet se déroule sur 36&nbsp;mois et s'organise autour de trois grandes phases de travail, du diagnostic territorial à l'analyse des politiques d'adaptation.</p>
         <p lang="en">The project runs over 36 months and is organised around three main phases, from territorial diagnostic to adaptation policy analysis.</p>
@@ -324,8 +389,8 @@
         <ul class="sublinks">
           <li><a href="#cartographie"><span lang="fr">Cartes itératives</span><span lang="en">Iterative maps</span></a>
             <span lang="fr">Les huit territoires à risque d'inondation de Normandie, mis à jour au fil du projet.</span><span lang="en">Normandy's eight flood-risk areas, updated as the project progresses.</span></li>
-          <li><a href="#presentations"><span lang="fr">Présentation</span><span lang="en">Presentation</span></a>
-            <span lang="fr">Diapositives du séminaire d'équipe du 15 octobre 2026&nbsp;: routes inondées et coûts pour les navetteurs.</span><span lang="en">Slides from the team seminar of 15 October 2026: flooded roads and commuting costs.</span></li>
+          <li><a href="#presentations/seon-ju-lee-2026-10-15"><span lang="fr">Présentation</span><span lang="en">Presentation</span></a>
+            <span lang="fr">Séminaire d'équipe du 15 octobre 2026&nbsp;: routes inondées et coûts pour les navetteurs.</span><span lang="en">Team seminar of 15 October 2026: flooded roads and commuting costs.</span></li>
         </ul>
       </div>
     </div>
@@ -344,10 +409,10 @@
 </section>
 
 <!-- ================= PROGRAMME DE RECHERCHE : PHASE 2 ================= -->
-<section class="page" id="phase-2" aria-labelledby="t-ph2">
+<section class="page" id="page-phase-2" aria-labelledby="t-ph2">
   <div class="main stack">
     <div class="card">
-      <h2 class="card-title"><span lang="fr">Programme de recherche</span><span lang="en">Research programme</span></h2>
+      <h2 class="card-title"><a href="#programme"><span lang="fr">Programme de recherche</span><span lang="en">Research programme</span></a></h2>
       <div class="card-body phase-intro">
         <p lang="fr">Le projet se déroule sur 36&nbsp;mois et s'organise autour de trois grandes phases de travail, du diagnostic territorial à l'analyse des politiques d'adaptation.</p>
         <p lang="en">The project runs over 36 months and is organised around three main phases, from territorial diagnostic to adaptation policy analysis.</p>
@@ -371,10 +436,10 @@
 </section>
 
 <!-- ================= PROGRAMME DE RECHERCHE : PHASE 3 ================= -->
-<section class="page" id="phase-3" aria-labelledby="t-ph3">
+<section class="page" id="page-phase-3" aria-labelledby="t-ph3">
   <div class="main stack">
     <div class="card">
-      <h2 class="card-title"><span lang="fr">Programme de recherche</span><span lang="en">Research programme</span></h2>
+      <h2 class="card-title"><a href="#programme"><span lang="fr">Programme de recherche</span><span lang="en">Research programme</span></a></h2>
       <div class="card-body phase-intro">
         <p lang="fr">Le projet se déroule sur 36&nbsp;mois et s'organise autour de trois grandes phases de travail, du diagnostic territorial à l'analyse des politiques d'adaptation.</p>
         <p lang="en">The project runs over 36 months and is organised around three main phases, from territorial diagnostic to adaptation policy analysis.</p>
@@ -397,11 +462,36 @@
   </div>
 </section>
 
+<!-- ================= PRÉSENTATIONS / PRESENTATIONS =================
+     The presentations are in data/presentations.json (figures and slide PDFs in presentations/).
+     Edit them in Pages CMS (see README.md). The site keeps the order of the form.
+     Each presentation has its own page at #presentations/<presenter>-<date>, e.g. #presentations/seon-ju-lee-2026-10-15. -->
+<section class="page" id="page-presentations" aria-labelledby="t-pres">
+  <div class="main">
+    <div class="card">
+      <h2 class="card-title" id="t-pres"><span lang="fr">Présentations</span><span lang="en">Presentations</span></h2>
+      <div class="card-body">
+        <p class="intro" lang="fr">Les travaux présentés par les membres de l'équipe, chacun avec un résumé.</p>
+        <p class="intro" lang="en">Work presented by members of the team, each with a summary.</p>
+        <ol class="pres-list" id="pres-list"></ol>
+        <p class="data-status" id="pres-status"><span lang="fr">Chargement…</span><span lang="en">Loading…</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="page" id="page-presentation" aria-labelledby="t-presentation">
+  <div class="main">
+    <article class="card pres-card" id="pres-article">
+      <p class="data-status" id="pres-page-status"><span lang="fr">Chargement…</span><span lang="en">Loading…</span></p>
+    </article>
+  </div>
+</section>
+
 <!-- ================= PUBLICATIONS =================
-     Publications are in data/publications.json and presentations in data/presentations.json
-     (PDF files and cover images in presentations/). Edit them in Pages CMS (see README.md).
+     Publications are in data/publications.json. Edit them in Pages CMS (see README.md).
      A card is shown only when it has at least one item. -->
-<section class="page has-side" id="publications" aria-labelledby="t-pubs">
+<section class="page has-side" id="page-publications" aria-labelledby="t-pubs">
   <aside class="sidebar">
     <p class="side-subject" lang="fr">Adapter les infrastructures de transport en Normandie aux risques du changement climatique</p>
     <p class="side-subject" lang="en">Adapting Transport Infrastructure in Normandy Region to Risks from Climate Change</p>
@@ -421,21 +511,11 @@
       <h3 class="card-title"><span lang="fr">Communications</span><span lang="en">Conference papers</span></h3>
       <div class="card-body"><ul class="refs"></ul></div>
     </div>
-    <div class="card" id="presentations">
-      <h3 class="card-title"><span lang="fr">Présentations</span><span lang="en">Presentations</span></h3>
-      <div class="card-body">
-        <div class="talks" id="talks"></div>
-        <p class="data-status" id="talks-status"><span lang="fr">Chargement…</span><span lang="en">Loading…</span></p>
-        <div class="pdf-view" hidden>
-          <iframe id="pdf-frame" title="PDF"></iframe>
-        </div>
-      </div>
-    </div>
   </div>
 </section>
 
 <!-- ================= CONTACT ================= -->
-<section class="page has-side" id="contact" aria-labelledby="t-contact">
+<section class="page has-side" id="page-contact" aria-labelledby="t-contact">
   <aside class="sidebar">
     <p class="side-subject" lang="fr">Adapter les infrastructures de transport en Normandie aux risques du changement climatique</p>
     <p class="side-subject" lang="en">Adapting Transport Infrastructure in Normandy Region to Risks from Climate Change</p>
