@@ -48,7 +48,7 @@ The page loads Leaflet 1.9.4 from cdn.jsdelivr.net for the team map. Map tiles c
 - **Join us.** Replace the "no open positions" lines (`class="empty"`) with the offer, or a link to it.
 - **Publications.** Copy one `<li>…</li>` line in the right card and edit it. Put the newest first.
 - **Presentations.** Put the PDF and a small cover image (PNG, about 600 px wide) in `presentations/`, then copy one `<article class="talk">…</article>` block in the Presentations card and change the file names and text.
-- **Datum.** Each source is one `<li>…</li>` in `<ul class="datum-list">` on the Phase 1 page: a category, a title with its link, the French and English descriptions and, if there is one, a documentation link.
+- **Datum.** Each source is one `<li>…</li>` in `<ul class="datum-list">` on the Phase 1 page: a category, a title with its link, and the French and English descriptions.
 - **Interactive maps.** To update a map, replace its file in `cartes/` and keep the same name. Each button names its file in `data-file`.
 - **Menus.** A new page needs a `<section class="page" id="…">` in `index.html`, a link with `data-page="…"` in the navbar and its id in the `PAGES` list at the top of `assets/site.js`.
 - **Team map.** The laboratory locations are in `assets/site.js`, under `var labs`.
