@@ -10,7 +10,8 @@ A menu name opens its page. The arrow next to it, or hovering with a mouse, open
 
 | Menu | Address | Page |
 |---|---|---|
-| Le projet / The project ▾ | `#sujet` | Subject of the study, map of the study area, key facts |
+| Le projet / The project ▾ | `#projet` | Context, objectives, research hypothesis and scientific contribution (text of the former ati-normandy.fr project page), map of the study area, key facts |
+| | `#sujet` | Subject of the study: the transport network, the climate risks and the eight TRIs studied first |
 | | `#partenaires` | Research teams and funding |
 | | `#equipe` | Map of the two laboratories and list of members |
 | | `#timeline` | Meetings, seminars and milestones |
@@ -25,7 +26,7 @@ A menu name opens its page. The arrow next to it, or hovering with a mouse, open
 | Publications | `#publications` | Journal articles, preprints and conference papers |
 | Contact | `#contact` | Coordinator and postal address |
 
-Older addresses still work: `#le-projet` opens `#sujet` and `#datum` opens the Datum part of Phase 1.
+Older addresses still work: `#le-projet` opens `#projet` and `#datum` opens the Datum part of Phase 1.
 
 - `?lang=en` opens the site in English.
 - `?carte=rouen#cartographie` opens it on the Rouen map.
