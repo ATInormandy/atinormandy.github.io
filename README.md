@@ -10,8 +10,8 @@ A menu name opens its page. The arrow next to it, or hovering with a mouse, open
 
 | Menu | Address | Page |
 |---|---|---|
-| Le projet / The project ▾ | `#projet` | Context, objectives, research hypothesis and scientific contribution (text of the former ati-normandy.fr project page), map of the study area, key facts |
-| | `#sujet` | Subject of the study: the transport network, the climate risks and the eight TRIs studied first |
+| Le projet / The project ▾ | `#projet` | The project in short (as on the home page of the former ati-normandy.fr), map of the study area, key facts |
+| | `#sujet` | Subject of the study: context, objectives, research hypothesis and scientific contribution (text of the project page of the former ati-normandy.fr) |
 | | `#partenaires` | Research teams and funding |
 | | `#equipe` | Map of the two laboratories and list of members |
 | | `#timeline` | Meetings, seminars and milestones |
