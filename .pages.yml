@@ -1,0 +1,218 @@
+# Pages CMS (https://pagescms.org): editing forms for the ATI-Normandy site.
+# The lists shown on the site are kept in data/*.json; presentation files go in presentations/.
+# Each save in Pages CMS is a commit to main, and GitHub Pages updates the site about a minute later.
+
+media:
+  - name: presentations
+    label: Présentations (PDF, images)
+    input: presentations
+    output: /presentations
+    extensions: [pdf, png, jpg, jpeg, webp]
+
+content:
+  - name: presentations
+    label: Présentations / Presentations
+    type: file
+    path: data/presentations.json
+    format: json
+    fields:
+      - name: items
+        label: Présentations / Presentations
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{date} {title}"
+        fields:
+          - name: date
+            label: Date
+            type: date
+            required: true
+            options:
+              format: yyyy-MM-dd
+          - name: title
+            label: Titre / Title
+            type: string
+            required: true
+          - name: authors
+            label: Auteurs / Authors
+            type: string
+            description: "Ex. : Seon Ju Lee (CREM, Université de Caen Normandie)"
+          - name: description_fr
+            label: Description (FR)
+            type: text
+          - name: description_en
+            label: Description (EN)
+            type: text
+            description: "Facultatif : sans texte anglais, le texte français est affiché. / Optional: without English text, the French text is shown."
+          - name: pdf
+            label: Fichier PDF / PDF file
+            type: file
+            required: true
+            options:
+              media: presentations
+              extensions: [pdf]
+          - name: cover
+            label: Image de couverture / Cover image
+            type: image
+            description: "Facultatif, par exemple la première diapositive en PNG. / Optional, for example the first slide as a PNG."
+            options:
+              media: presentations
+              extensions: [png, jpg, jpeg, webp]
+
+  - name: publications
+    label: Publications
+    type: file
+    path: data/publications.json
+    format: json
+    fields:
+      - name: items
+        label: Publications
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{year} {authors}: {title}"
+        fields:
+          - name: type
+            label: Type
+            type: select
+            required: true
+            options:
+              values:
+                - name: article
+                  label: Article publié / Journal article
+                - name: preprint
+                  label: Préprint / Preprint
+                - name: communication
+                  label: Communication / Conference paper
+          - name: authors
+            label: Auteurs / Authors
+            type: string
+            required: true
+            description: "Ex. : Danau D., Ouerhani A."
+          - name: year
+            label: Année / Year
+            type: string
+            required: true
+          - name: title
+            label: Titre / Title
+            type: string
+            required: true
+          - name: url
+            label: Lien vers le texte / Link to the paper
+            type: string
+            description: Facultatif. / Optional.
+          - name: venue_fr
+            label: Revue ou conférence (FR) / Journal or conference (FR)
+            type: string
+            description: "Ex. : ITEA, Bergame, juin 2026"
+          - name: venue_en
+            label: Revue ou conférence (EN) / Journal or conference (EN)
+            type: string
+            description: "Facultatif. Ex. : ITEA, Bergamo, June 2026 / Optional."
+          - name: venue_url
+            label: Lien vers la revue ou la conférence / Link to the journal or conference
+            type: string
+            description: Facultatif. / Optional.
+
+  - name: datum
+    label: Données (Datum)
+    type: file
+    path: data/datum.json
+    format: json
+    fields:
+      - name: items
+        label: Sources de données / Data sources
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{title}"
+        fields:
+          - name: category
+            label: Catégorie / Category
+            type: select
+            required: true
+            options:
+              values:
+                - name: risques-naturels
+                  label: Risques naturels / Natural hazards
+                - name: geographie
+                  label: Géographie et réseau routier / Geography and road network
+                - name: transport
+                  label: Transport
+                - name: insee
+                  label: INSEE
+                - name: evaluation-economique
+                  label: Évaluation économique / Economic appraisal
+                - name: autre
+                  label: Autre / Other
+          - name: title
+            label: Titre / Title
+            type: string
+            required: true
+          - name: title_en
+            label: Titre anglais, s'il est différent / English title, if different
+            type: string
+          - name: url
+            label: Lien vers la source / Link to the source
+            type: string
+            required: true
+          - name: description_fr
+            label: Description (FR)
+            type: text
+          - name: description_en
+            label: Description (EN)
+            type: text
+
+  - name: timeline
+    label: Chronologie / Timeline
+    type: file
+    path: data/timeline.json
+    format: json
+    fields:
+      - name: items
+        label: Événements / Events
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{date} {title_fr}"
+        fields:
+          - name: date
+            label: Date (début) / Start date
+            type: date
+            required: true
+            options:
+              format: yyyy-MM-dd
+          - name: end_date
+            label: Date de fin / End date
+            type: date
+            default: ""
+            description: Facultatif, pour un événement de plusieurs jours. / Optional, for an event over several days.
+            options:
+              format: yyyy-MM-dd
+          - name: title_fr
+            label: Titre (FR)
+            type: string
+            required: true
+          - name: title_en
+            label: Title (EN)
+            type: string
+          - name: text_fr
+            label: Texte (FR)
+            type: text
+          - name: text_en
+            label: Text (EN)
+            type: text
+          - name: link
+            label: Lien / Link
+            type: string
+            description: "Facultatif : une adresse web, ou une page du site comme #presentations. / Optional: a web address, or a page of the site such as #presentations."
+          - name: link_label_fr
+            label: Texte du lien (FR)
+            type: string
+          - name: link_label_en
+            label: Link text (EN)
+            type: string
