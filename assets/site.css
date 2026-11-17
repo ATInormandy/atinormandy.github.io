@@ -144,7 +144,9 @@ figcaption { margin-top: 10px; }
 .timeline { list-style: none; margin: 6px 0 0; padding: 0; }
 .timeline li { position: relative; padding: 0 0 24px 28px; }
 .timeline li:last-child { padding-bottom: 0; }
-.timeline li::before { content: ""; position: absolute; left: 0; top: 5px; width: 12px; height: 12px; border-radius: 50%; background: var(--card); border: 2px solid var(--tab); }
+.timeline li::before { content: ""; position: absolute; left: 0; top: 5px; width: 12px; height: 12px; border-radius: 50%; background: var(--tab); border: 2px solid var(--tab); }
+.timeline li.is-upcoming::before { background: var(--card); }      /* hollow dot: event still to come */
+.tl-date .status { margin-left: 8px; vertical-align: 1px; }
 .timeline li::after { content: ""; position: absolute; left: 5px; top: 21px; bottom: 3px; border-left: 2px solid var(--line); }
 .timeline li:last-child::after { display: none; }
 .tl-date { margin: 0 0 2px; font-size: 14.5px; font-weight: 700; color: var(--link); }
@@ -204,8 +206,12 @@ ul.sublinks li { margin: 0; padding: 10px 0; border-bottom: 1px solid var(--line
 .refs li { margin-bottom: 12px; }
 .refs li:last-child { margin-bottom: 0; }
 .talk { display: grid; grid-template-columns: 290px minmax(0, 1fr); gap: 18px 26px; align-items: start; }
+.talk.no-cover { grid-template-columns: minmax(0, 1fr); }
+.talks > .talk + .talk { margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--line); }
 .talk-cover { display: block; }
-.talk-cover img { display: block; width: 100%; height: auto; border: 1px solid var(--line); border-radius: 3px; }
+.talk-cover img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: contain; background: #F4F6F8; border: 1px solid var(--line); border-radius: 3px; }
+.talk-meta { margin: -2px 0 10px; font-size: 14.5px; }
+.talk-show[aria-pressed="true"] { background: #EEF4FB; border-color: var(--link); color: var(--link); }
 .talk-cover:hover img { border-color: var(--ink-2); }
 .talk-text h4 { margin: 0 0 8px; font: 700 18px/1.35 var(--sans); }
 .talk-text p { color: var(--ink-2); }
@@ -216,6 +222,11 @@ ul.sublinks li { margin: 0; padding: 10px 0; border-bottom: 1px solid var(--line
 .btn-quiet:hover { background: #F4F6F8; border-color: var(--ink-2); }
 .pdf-view { margin-top: 18px; height: max(520px, calc(100vh - var(--nav-h) - 140px)); background: #EEF1F3; border: 1px solid var(--line); border-radius: 3px; }
 .pdf-view iframe { display: block; width: 100%; height: 100%; border: 0; }
+
+/* Lists read from data/*.json: loading, empty and error messages */
+.data-status { margin: 0; color: var(--ink-2); font-size: 15px; }
+.data-status[hidden] { display: none; }
+.stack > .data-status { padding: 12px 16px; background: var(--card); border: 1px solid var(--line); border-radius: 4px; }
 
 /* ---------- Contact ---------- */
 .contact-cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 32px; }
@@ -267,6 +278,7 @@ address { font-style: normal; }
   .phase-steps a:first-child { border-top: 0; }
   .phase-sub { font-size: 17px; }
   .talk { grid-template-columns: minmax(0, 1fr); }
+  .talk-show { display: none; }
   .pdf-view { display: none; }
 }
 @media (max-width: 420px) {
