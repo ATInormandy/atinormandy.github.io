@@ -10,7 +10,7 @@ A menu name opens its page. The arrow next to it, or hovering with a mouse, open
 
 | Menu | Address | Page |
 |---|---|---|
-| Le projet / The project ▾ | `#projet` | The project in short (as on the home page of the former ati-normandy.fr), map of the study area, key facts |
+| Le projet / The project ▾ | `#projet` | Text of the home page of the former ati-normandy.fr (introduction, two objectives, links), map of the study area, project at a glance, the two laboratories |
 | | `#sujet` | Subject of the study: context, objectives, research hypothesis and scientific contribution (text of the project page of the former ati-normandy.fr) |
 | | `#partenaires` | Research teams and funding |
 | | `#equipe` | Map of the two laboratories and list of members |
