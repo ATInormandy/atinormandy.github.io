@@ -29,7 +29,9 @@ Older addresses still work: `#le-projet` opens `#sujet`, `#programme` opens `#ph
 
 | File | What it is |
 |---|---|
-| `index.html` | All the text of the site. French and English sit side by side. Edit the text here. |
+| `index.html` | The pages and their fixed text. French and English sit side by side. |
+| `data/*.json` | The lists that change often: `timeline.json`, `datum.json`, `publications.json`, `presentations.json`. Edit them in Pages CMS. |
+| `.pages.yml` | The Pages CMS forms for those lists |
 | `404.html` | Sends the old ati-normandy.fr addresses (`/fr/...`, `/en/...`, `/carte/...`) to the matching page |
 | `assets/site.css` | Layout, colours and type |
 | `assets/site.js` | Page switching, drop-down menus, language switch, map buttons, team map, slide viewer |
@@ -41,19 +43,39 @@ Older addresses still work: `#le-projet` opens `#sujet`, `#programme` opens `#ph
 
 The page loads Leaflet 1.9.4 from cdn.jsdelivr.net for the team map. Map tiles come from the IGN Géoplateforme.
 
-## Editing
+## Adding presentations, publications, data sources and events (Pages CMS)
+
+The four lists that change often are edited with forms in [Pages CMS](https://pagescms.org), a free, open-source editor for sites kept on GitHub:
+
+| Form | File | Shown on |
+|---|---|---|
+| Présentations / Presentations | `data/presentations.json` (PDF and cover image in `presentations/`) | Publications → Présentations |
+| Publications | `data/publications.json` | Publications (Articles, Préprints, Communications) |
+| Données (Datum) | `data/datum.json` | Phase 1 → Datum |
+| Chronologie / Timeline | `data/timeline.json` | Le projet → Chronologie |
+
+1. Open https://app.pagescms.org and sign in. Team members are invited by email from the repository's Collaborators settings in Pages CMS and need no GitHub account.
+2. Open `ATInormandy/atinormandy.github.io`, choose a form, add or change an item, and save. For a presentation, upload the PDF in the form, and a cover image if you have one (for example the first slide as a PNG).
+3. Each save is a commit on `main`. The site shows the change about a minute later.
+
+How the site shows the lists:
+
+- Presentations and publications are sorted newest first, timeline events oldest first. The Datum list keeps the order of the form.
+- Every text has a French and an English field. If one of the two is empty, the other is shown in both languages.
+- A publication card (Articles, Préprints, Communications) appears only when it has at least one item.
+- A timeline event whose date has not passed gets an "à venir / upcoming" label.
+
+The forms are defined in `.pages.yml`. A new Datum category must be added both there and in `CATEGORIES` in `assets/site.js`.
+
+## Editing the other text
 
 - **Text.** Every bilingual piece of text appears twice, as `<span lang="fr">…</span><span lang="en">…</span>` (or `<p lang="fr">` and `<p lang="en">`). Change both versions.
-- **Timeline.** Copy one `<li>…</li>` block in `<ol class="timeline">` and change the date, title and text. The newest event goes last. Give dates only, not times.
 - **Join us.** Replace the "no open positions" lines (`class="empty"`) with the offer, or a link to it.
-- **Publications.** Copy one `<li>…</li>` line in the right card and edit it. Put the newest first.
-- **Presentations.** Put the PDF and a small cover image (PNG, about 600 px wide) in `presentations/`, then copy one `<article class="talk">…</article>` block in the Presentations card and change the file names and text.
-- **Datum.** Each source is one `<li>…</li>` in `<ul class="datum-list">` on the Phase 1 page: a category, a title with its link, and the French and English descriptions.
 - **Interactive maps.** To update a map, replace its file in `cartes/` and keep the same name. Each button names its file in `data-file`.
 - **Menus.** A new page needs a `<section class="page" id="…">` in `index.html`, a link with `data-page="…"` in the navbar and its id in the `PAGES` list at the top of `assets/site.js`.
 - **Team map.** The laboratory locations are in `assets/site.js`, under `var labs`.
 
-GitHub's web editor is enough for all of this. Open the file, click the pencil icon, edit, and click Commit changes. The site updates one or two minutes later.
+GitHub's web editor is enough for this. Open the file, click the pencil icon, edit, and click Commit changes. The site updates one or two minutes later.
 
 ## Publishing
 

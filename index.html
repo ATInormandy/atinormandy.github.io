@@ -214,7 +214,7 @@
 </section>
 
 <!-- ================= LE PROJET : CHRONOLOGIE / TIMELINE =================
-     To add an event: copy one <li> block (newest last). -->
+     The events are in data/timeline.json. Edit them in Pages CMS (see README.md). -->
 <section class="page" id="timeline" aria-labelledby="t-timeline">
   <div class="main">
     <div class="card">
@@ -222,24 +222,8 @@
       <div class="card-body">
         <p class="intro" lang="fr">Les réunions, séminaires et étapes du projet.</p>
         <p class="intro" lang="en">Meetings, seminars and milestones of the project.</p>
-        <ol class="timeline">
-          <li>
-            <p class="tl-date"><span lang="fr">15 octobre 2026</span><span lang="en">15 October 2026</span></p>
-            <div class="tl-body">
-              <h3><span lang="fr">Séminaire interne de l'équipe</span><span lang="en">Internal team seminar</span></h3>
-              <p lang="fr">Point d'avancement de la phase 1&nbsp;: routes inondées et coûts pour les navetteurs dans les huit TRI. <a href="#presentations">Diapositives</a></p>
-              <p lang="en">Phase 1 progress: flooded roads and commuting costs in the eight TRIs. <a href="#presentations">Slides</a></p>
-            </div>
-          </li>
-          <li>
-            <p class="tl-date"><span lang="fr">26–28 octobre 2026</span><span lang="en">26–28 October 2026</span></p>
-            <div class="tl-body">
-              <h3><span lang="fr">Réunion de travail CREM–LEM, Dunkerque</span><span lang="en">CREM–LEM working meeting, Dunkerque</span></h3>
-              <p lang="fr">Partage des données de la phase 1 et organisation du développement du modèle QSE (phase 2), à l'Université du Littoral Côte d'Opale.</p>
-              <p lang="en">Sharing the Phase 1 data and planning the development of the QSE model (Phase 2), at the University of the Littoral Opal Coast.</p>
-            </div>
-          </li>
-        </ol>
+        <ol class="timeline" id="timeline-list"></ol>
+        <p class="data-status" id="timeline-status"><span lang="fr">Chargement…</span><span lang="en">Loading…</span></p>
       </div>
     </div>
   </div>
@@ -346,40 +330,14 @@
       </div>
     </div>
 
+    <!-- The data sources are in data/datum.json. Edit them in Pages CMS (see README.md). -->
     <div class="card" id="datum">
       <h3 class="card-title"><span lang="fr">Données (Datum)</span><span lang="en">Datum</span></h3>
       <div class="card-body">
         <p class="intro" lang="fr">Les sources de données utilisées dans le projet ATI-Normandy. Toutes sont ouvertes (Licence Ouverte / Etalab 2.0).</p>
         <p class="intro" lang="en">The data sources used in the ATI-Normandy project. All are open data (Licence Ouverte / Etalab 2.0).</p>
-        <ul class="datum-list">
-          <li>
-            <p class="dl-cat"><span lang="fr">Risques naturels</span><span lang="en">Natural hazards</span></p>
-            <h4><a href="https://www.georisques.gouv.fr/donnees/bases-de-donnees/zonages-inondation-rapportage-2020">Cartographies des TRI – Rapportage 2020 (Géorisques)</a></h4>
-            <p lang="fr">Surfaces inondables et classes de hauteurs d'eau des territoires à risque important d'inondation (TRI), par type d'aléa (débordement de cours d'eau, ruissellement, submersion marine) et par scénario (fréquent, moyen, moyen avec changement climatique, extrême)&nbsp;; couches SIG du 2<sup>e</sup> cycle. Utilisées pour repérer les tronçons routiers inondés dans les huit TRI de Normandie (51 cartes).</p>
-            <p lang="en">Flood extents and water-depth classes of the high flood-risk areas (TRIs), by hazard type (river overflow, runoff, marine submersion) and scenario (frequent, medium, medium with climate change, extreme); GIS layers of the second cycle. Used to identify flooded road segments in Normandy's eight TRIs (51 maps).</p>          </li>
-          <li>
-            <p class="dl-cat"><span lang="fr">Géographie et réseau routier</span><span lang="en">Geography and road network</span></p>
-            <h4><a href="https://cartes.gouv.fr/rechercher-une-donnee/dataset/IGNF_BD-TOPO">BD TOPO<sup>®</sup> (IGN), version 3.5</a></h4>
-            <p lang="fr">Base de données topographique vectorielle de l'IGN. Nous utilisons les tronçons de route (vitesse moyenne, sens de circulation, ponts, numéro et gestionnaire) et les bâtiments (usage, nombre de logements, nombre d'étages) des départements normands (14, 27, 50, 61, 76) et voisins (22, 35), édition de décembre 2025, pour construire le réseau routier et localiser logements et emplois.</p>
-            <p lang="en">IGN's vector topographic database. We use road segments (average speed, direction of traffic, bridges, road number and manager) and buildings (use, number of dwellings, number of floors) for the Normandy départements (14, 27, 50, 61, 76) and their neighbours (22, 35), December 2025 release, to build the road network and to locate homes and jobs.</p>          </li>
-          <li>
-            <p class="dl-cat"><span lang="fr">Géographie et réseau routier</span><span lang="en">Geography and road network</span></p>
-            <h4><a href="https://cartes.gouv.fr/rechercher-une-donnee/dataset/IGNF_ADMIN-EXPRESS">ADMIN EXPRESS COG CARTO (IGN), <span lang="fr">édition 2026</span><span lang="en">2026 release</span></a></h4>
-            <p lang="fr">Limites administratives (communes, départements) conformes au code officiel géographique au 1<sup>er</sup> janvier 2026, avec les chefs-lieux de commune. Référence pour les codes communes et pour relier les données de l'INSEE aux couches spatiales.</p>
-            <p lang="en">Administrative boundaries (communes, départements) matching the official geographic code of 1 January 2026, with commune seats. Reference for commune codes and for linking INSEE data to the spatial layers.</p>          </li>
-          <li>
-            <p class="dl-cat">INSEE</p>
-            <h4><a href="https://www.insee.fr/fr/statistiques/8998300">Mobilités professionnelles en 2023&nbsp;: déplacements domicile – lieu de travail</a></h4>
-            <p lang="fr">Flux d'actifs occupés de 15 ans ou plus entre commune de résidence et commune de travail (recensement 2023, publié le 25 juin 2026). Utilisés pour les déplacements domicile-travail entre communes et pour le nombre d'emplois et d'actifs de chaque commune.</p>
-            <p lang="en">Flows of employed people aged 15 or over between commune of residence and commune of work (2023 census, published on 25 June 2026). Used for commuting between communes and for the number of jobs and workers in each commune.</p>
-          </li>
-          <li>
-            <p class="dl-cat"><span lang="fr">Évaluation économique</span><span lang="en">Economic appraisal</span></p>
-            <h4><a href="https://www.ecologie.gouv.fr/politiques-publiques/evaluation-projets-transport">Évaluation des projets de transport – valeurs de référence</a></h4>
-            <p lang="fr">Référentiel officiel de l'évaluation socio-économique des projets de transport (fiches outils), dont les valeurs du temps. Utilisé pour valoriser le temps de trajet supplémentaire (10,6&nbsp;€ de 2015 par heure pour les déplacements domicile-travail en milieu urbain).</p>
-            <p lang="en">Official framework for the socio-economic appraisal of transport projects (fiches outils), including values of time. Used to value extra travel time (€10.6 at 2015 prices per hour for urban commuting).</p>
-          </li>
-        </ul>
+        <ul class="datum-list" id="datum-list"></ul>
+        <p class="data-status" id="datum-status"><span lang="fr">Chargement…</span><span lang="en">Loading…</span></p>
       </div>
     </div>
   </div>
@@ -440,8 +398,9 @@
 </section>
 
 <!-- ================= PUBLICATIONS =================
-     To add an item: copy one <li> ... </li> line in the right card and edit it. Newest first.
-     To add a presentation: put the PDF (and a small cover image) in presentations/ and copy one <article class="talk"> block. -->
+     Publications are in data/publications.json and presentations in data/presentations.json
+     (PDF files and cover images in presentations/). Edit them in Pages CMS (see README.md).
+     A card is shown only when it has at least one item. -->
 <section class="page has-side" id="publications" aria-labelledby="t-pubs">
   <aside class="sidebar">
     <p class="side-subject" lang="fr">Adapter les infrastructures de transport en Normandie aux risques du changement climatique</p>
@@ -449,46 +408,26 @@
   </aside>
   <div class="main stack">
     <h2 class="vh" id="t-pubs">Publications</h2>
-    <div class="card">
-      <h3 class="card-title"><span lang="fr">Préprints</span><span lang="en">Preprints</span></h3>
-      <div class="card-body">
-        <ul class="refs">
-          <li>Kilani M., 2025. <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5292708">Transportation in a Warming World: Adaptation Strategies and Perspectives for Modeling and Simulation</a>. <em>SSRN</em>.</li>
-        </ul>
-      </div>
+    <p class="data-status" id="pubs-status"><span lang="fr">Chargement…</span><span lang="en">Loading…</span></p>
+    <div class="card" data-pub-type="article" hidden>
+      <h3 class="card-title"><span lang="fr">Articles</span><span lang="en">Journal articles</span></h3>
+      <div class="card-body"><ul class="refs"></ul></div>
     </div>
-    <div class="card">
+    <div class="card" data-pub-type="preprint" hidden>
+      <h3 class="card-title"><span lang="fr">Préprints</span><span lang="en">Preprints</span></h3>
+      <div class="card-body"><ul class="refs"></ul></div>
+    </div>
+    <div class="card" data-pub-type="communication" hidden>
       <h3 class="card-title"><span lang="fr">Communications</span><span lang="en">Conference papers</span></h3>
-      <div class="card-body">
-        <ul class="refs">
-          <li>Danau D., Ouerhani A., 2026. A Theory of Optimal Investment Timing in Railways. <em>WCTR</em>, Toulouse, <span lang="fr">juillet 2026</span><span lang="en">July 2026</span>&nbsp;; <em>ITEA</em>, <span lang="fr">Bergame, juin 2026</span><span lang="en">Bergamo, June 2026</span>.</li>
-          <li>Gbeteglo C., 2026. Economic Evaluation of a Major Transport Upgrade: Agglomeration, Employment, and Commuting. <em>ITEA</em>, <span lang="fr">Bergame, juin 2026</span><span lang="en">Bergamo, June 2026</span>.</li>
-          <li>Gbeteglo C., 2026. Socioeconomic Evaluation of the Lille SERM Project: An Approach Based on Quantitative Spatial Economics. <em>ASRDLF</em>, Toulouse, <span lang="fr">juin 2026</span><span lang="en">June 2026</span>.</li>
-          <li>Kilani M., Berrich O., Lamari M., 2026. Economic Valuation of Climate Change Impacts and Adaptation in Transportation Networks. <em><a href="https://sites-aicc.sciencesconf.org/">AICC</a></em>, Rome, <span lang="fr">mai 2026</span><span lang="en">May 2026</span>.</li>
-        </ul>
-      </div>
+      <div class="card-body"><ul class="refs"></ul></div>
     </div>
     <div class="card" id="presentations">
       <h3 class="card-title"><span lang="fr">Présentations</span><span lang="en">Presentations</span></h3>
       <div class="card-body">
-        <article class="talk">
-          <a class="talk-cover" href="presentations/2026-10-15_flooded-roads-commuting.pdf" target="_blank" rel="noopener">
-            <img src="presentations/2026-10-15_flooded-roads-commuting.png" width="580" height="327" alt="" loading="lazy">
-            <span class="vh"><span lang="fr">Ouvrir le PDF (nouvel onglet)</span><span lang="en">Open the PDF (new tab)</span></span>
-          </a>
-          <div class="talk-text">
-            <h4>Flooded roads and commuting costs in the eight flood-risk areas of Normandy</h4>
-            <p lang="fr">Diapositives choisies du séminaire d'équipe du 15 octobre 2026 (travail en cours). Elles présentent la logique générale de la recherche&nbsp;: questions, territoires, données et méthode, avec l'exemple de Caen. Seon Ju Lee, CREM, Université de Caen Normandie.</p>
-            <p lang="en">Selected slides from the team seminar of 15 October 2026 (work in progress). They present the general logic of the research: questions, study areas, data and method, with Caen as the example. Seon Ju Lee, CREM, University of Caen Normandy.</p>
-            <p class="talk-actions">
-              <a class="btn" href="presentations/2026-10-15_flooded-roads-commuting.pdf" target="_blank" rel="noopener"><span lang="fr">Ouvrir le PDF</span><span lang="en">Open the PDF</span><span class="vh"><span lang="fr">(nouvel onglet)</span><span lang="en">(new tab)</span></span></a>
-              <a class="btn btn-quiet" href="presentations/2026-10-15_flooded-roads-commuting.pdf" download><span lang="fr">Télécharger (PDF, 14 diapositives, 1,6 Mo)</span><span lang="en">Download (PDF, 14 slides, 1.6 MB)</span></a>
-            </p>
-          </div>
-        </article>
-        <div class="pdf-view">
-          <iframe id="pdf-frame" data-src="presentations/2026-10-15_flooded-roads-commuting.pdf#view=FitH"
-                  title="Flooded roads and commuting costs in the eight flood-risk areas of Normandy (PDF)"></iframe>
+        <div class="talks" id="talks"></div>
+        <p class="data-status" id="talks-status"><span lang="fr">Chargement…</span><span lang="en">Loading…</span></p>
+        <div class="pdf-view" hidden>
+          <iframe id="pdf-frame" title="PDF"></iframe>
         </div>
       </div>
     </div>
