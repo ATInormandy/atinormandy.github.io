@@ -1,0 +1,44 @@
+{
+  "items": [
+    {
+      "category": "risques-naturels",
+      "title": "Cartographies des TRI – Rapportage 2020 (Géorisques)",
+      "title_en": "",
+      "url": "https://www.georisques.gouv.fr/donnees/bases-de-donnees/zonages-inondation-rapportage-2020",
+      "description_fr": "Surfaces inondables et classes de hauteurs d'eau des territoires à risque important d'inondation (TRI), par type d'aléa (débordement de cours d'eau, ruissellement, submersion marine) et par scénario (fréquent, moyen, moyen avec changement climatique, extrême) ; couches SIG du 2e cycle. Utilisées pour repérer les tronçons routiers inondés dans les huit TRI de Normandie (51 cartes).",
+      "description_en": "Flood extents and water-depth classes of the high flood-risk areas (TRIs), by hazard type (river overflow, runoff, marine submersion) and scenario (frequent, medium, medium with climate change, extreme); GIS layers of the second cycle. Used to identify flooded road segments in Normandy's eight TRIs (51 maps)."
+    },
+    {
+      "category": "geographie",
+      "title": "BD TOPO® (IGN), version 3.5",
+      "title_en": "",
+      "url": "https://cartes.gouv.fr/rechercher-une-donnee/dataset/IGNF_BD-TOPO",
+      "description_fr": "Base de données topographique vectorielle de l'IGN. Nous utilisons les tronçons de route (vitesse moyenne, sens de circulation, ponts, numéro et gestionnaire) et les bâtiments (usage, nombre de logements, nombre d'étages) des départements normands (14, 27, 50, 61, 76) et voisins (22, 35), édition de décembre 2025, pour construire le réseau routier et localiser logements et emplois.",
+      "description_en": "IGN's vector topographic database. We use road segments (average speed, direction of traffic, bridges, road number and manager) and buildings (use, number of dwellings, number of floors) for the Normandy départements (14, 27, 50, 61, 76) and their neighbours (22, 35), December 2025 release, to build the road network and to locate homes and jobs."
+    },
+    {
+      "category": "geographie",
+      "title": "ADMIN EXPRESS COG CARTO (IGN), édition 2026",
+      "title_en": "ADMIN EXPRESS COG CARTO (IGN), 2026 release",
+      "url": "https://cartes.gouv.fr/rechercher-une-donnee/dataset/IGNF_ADMIN-EXPRESS",
+      "description_fr": "Limites administratives (communes, départements) conformes au code officiel géographique au 1er janvier 2026, avec les chefs-lieux de commune. Référence pour les codes communes et pour relier les données de l'INSEE aux couches spatiales.",
+      "description_en": "Administrative boundaries (communes, départements) matching the official geographic code of 1 January 2026, with commune seats. Reference for commune codes and for linking INSEE data to the spatial layers."
+    },
+    {
+      "category": "insee",
+      "title": "Mobilités professionnelles en 2023 : déplacements domicile – lieu de travail",
+      "title_en": "",
+      "url": "https://www.insee.fr/fr/statistiques/8998300",
+      "description_fr": "Flux d'actifs occupés de 15 ans ou plus entre commune de résidence et commune de travail (recensement 2023, publié le 25 juin 2026). Utilisés pour les déplacements domicile-travail entre communes et pour le nombre d'emplois et d'actifs de chaque commune.",
+      "description_en": "Flows of employed people aged 15 or over between commune of residence and commune of work (2023 census, published on 25 June 2026). Used for commuting between communes and for the number of jobs and workers in each commune."
+    },
+    {
+      "category": "evaluation-economique",
+      "title": "Évaluation des projets de transport – valeurs de référence",
+      "title_en": "",
+      "url": "https://www.ecologie.gouv.fr/politiques-publiques/evaluation-projets-transport",
+      "description_fr": "Référentiel officiel de l'évaluation socio-économique des projets de transport (fiches outils), dont les valeurs du temps. Utilisé pour valoriser le temps de trajet supplémentaire (10,6 € de 2015 par heure pour les déplacements domicile-travail en milieu urbain).",
+      "description_en": "Official framework for the socio-economic appraisal of transport projects (fiches outils), including values of time. Used to value extra travel time (€10.6 at 2015 prices per hour for urban commuting)."
+    }
+  ]
+}

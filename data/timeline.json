@@ -1,0 +1,26 @@
+{
+  "items": [
+    {
+      "date": "2026-10-15",
+      "end_date": "",
+      "title_fr": "Séminaire interne de l'équipe",
+      "title_en": "Internal team seminar",
+      "text_fr": "Point d'avancement de la phase 1 : routes inondées et coûts pour les navetteurs dans les huit TRI.",
+      "text_en": "Phase 1 progress: flooded roads and commuting costs in the eight TRIs.",
+      "link": "#presentations",
+      "link_label_fr": "Diapositives",
+      "link_label_en": "Slides"
+    },
+    {
+      "date": "2026-10-26",
+      "end_date": "2026-10-28",
+      "title_fr": "Réunion de travail CREM–LEM, Dunkerque",
+      "title_en": "CREM–LEM working meeting, Dunkerque",
+      "text_fr": "Partage des données de la phase 1 et organisation du développement du modèle QSE (phase 2), à l'Université du Littoral Côte d'Opale.",
+      "text_en": "Sharing the Phase 1 data and planning the development of the QSE model (Phase 2), at the University of the Littoral Opal Coast.",
+      "link": "",
+      "link_label_fr": "",
+      "link_label_en": ""
+    }
+  ]
+}
